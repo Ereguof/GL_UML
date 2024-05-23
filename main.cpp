@@ -5,6 +5,7 @@ using namespace std;
 #include <fstream>
 #include <string>
 #include <list>
+#include <algorithm>
 #include "Mesure.h"
 #include "Fournisseur.h"
 #include "Utilisateur.h"
@@ -12,7 +13,7 @@ using namespace std;
 #include "Attribut.h"
 
 
-list < Attribut > listeAttributs;
+list < Attribut > listeAttribut;
 
 int lireDataset(string nomDossier)
 {
@@ -51,9 +52,12 @@ int lireDataset(string nomDossier)
             string description = ligne.substr(start, end-start);
 
             //cout << "AttributID: " << attributID << " Unit: " << unit << " Description: " << description << endl;
-            Attribut attribut(attributID, unit, description);
-            listeAttributs.push_back(attribut);
-            cout << "AttributID:" << listeAttributs.front().getAttributId() << " Unit:" << listeAttributs.front().getUnite() << " Description:" << listeAttributs.front().getDescription() << endl;
+            Attribut att(attributID, unit, description);
+            listeAttribut.push_back(att);
+            
+            for (list<Attribut>::iterator it = listeAttribut.begin(); it != listeAttribut.end(); ++it) {
+                cout << "AttributID:" << it->getAttributId() << " Unit:" << it->getUnite() << " Description:" << it->getDescription() << endl;
+            }
         }
     }
     return 0;
