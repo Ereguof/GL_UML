@@ -16,7 +16,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Service.h"
-using namespace std
+using namespace std;
 #include "main.h"
 
 //------------------------------------------------------------- Constantes
@@ -44,9 +44,14 @@ int Service::constulterNombrePoints(int Id){
 }
 
 int Service::qualiteAirZoneCirculairePeriode(double latitude, double longitude, Date debut, Date fin, int rayon){
-    cout << "Il faut encore implémenter cette fonction" << endl;
+    cout << "Il faut encore implémenter cette fonction"<< endl;
+
     return 0;
-}
+}//------------------------------------------------- Surcharge d'opérateurs
+
+
+
+
 
 list<string> Service :: identifierZoneQualiteSimilaire(string CapteurId){
     cout << "Il faut encore implémenter cette fonction" << endl;
@@ -56,11 +61,7 @@ list<string> Service :: identifierZoneQualiteSimilaire(string CapteurId){
 }
 
 //------------------------------------------------- Surcharge d'opérateurs
-Service & Service::operator = ( const Service & unService )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
+
 
 
 //-------------------------------------------- Constructeurs - destructeur
