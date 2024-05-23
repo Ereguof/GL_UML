@@ -31,17 +31,8 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-<<<<<<< HEAD
-Particulier & Particulier::operator = ( const Particulier & unParticulier )
-// Algorithme :
-//
-{
-  return *this;
 
-} //----- Fin de operator =
-=======
 
->>>>>>> 42a7385 (commit pierre 5)
 
 string const & Particulier::getCapteurID() const
 {
