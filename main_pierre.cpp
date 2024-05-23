@@ -1,8 +1,9 @@
 #include <iostream>
-#include <Attribut.h>
+#include "Attribut.h"
 
 #include <string.h>
 
+using namespace std;
 
 int main(){
 
@@ -12,7 +13,7 @@ int main(){
 
 	string  description = "fjmdsljf";
 
-	Attribut Attribut1 = Attribut(int attributId, int unite, string description);
+	Attribut Attribut1 = Attribut(attributId, unite, description);
 
-
+  
 }

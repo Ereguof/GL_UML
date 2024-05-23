@@ -31,14 +31,7 @@ using namespace std;
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Attribut::Attribut ( const Attribut & unAttribut )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Attribut>" << endl;
-#endif
-} //----- Fin de Attribut (constructeur de copie)
+
 
 Attribut::Attribut (int attributId_, int unite_, string description_){
 	unite = unite_;
@@ -71,4 +64,3 @@ Attribut::~Attribut ( )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-
