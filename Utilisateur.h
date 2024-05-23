@@ -37,24 +37,13 @@ public:
     //
     // Contrat :
     //
-    int constulterNombrePoints (int Id);
-
-
-
-    const string & getUtilisateurId() const;
-
-    int qualiteAirZoneCirculairePeriode(double latitude, double longitude, Date debut, Date fin, int rayon);
-
-    std::list<string> identifierZoneQualiteSimilaire(string CapteurId);
-
-    int qualiteAirZoneCirculaireMoment(double latitude, double longitude, Date jour);
 //------------------------------------------------- Surcharge d'opérateurs
     Utilisateur & operator = ( const Utilisateur & unUtilisateur );
     // Mode d'emploi :
     //
     // Contrat :
     //
-
+    const string & getUtilisateurId() const;
 
 //-------------------------------------------- Constructeurs - destructeur
     Utilisateur ( const Utilisateur & unUtilisateur );

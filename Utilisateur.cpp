@@ -34,29 +34,6 @@ using namespace std;
 
 //------------------------------------------------- Surcharge d'opérateurs
 
-int Utilisateur::qualiteAirZoneCirculaireMoment(double latitude, double longitude, Date jour){
-
-
-  
-}
-
-
-int Utilisateur::constulterNombrePoints(int Id){
-    cout << "La fonction constulterNombrePoints n'a pas été implémentéé, elle retourne juste l'id en entrée" << endl;
-    return Id;
-}
-
-int Utilisateur::qualiteAirZoneCirculairePeriode(double latitude, double longitude, Date debut, Date fin, int rayon){
-    cout << "Il faut encore implémenter cette fonction" << endl;
-    return 0;
-}
-
-list<string> Utilisateur :: identifierZoneQualiteSimilaire(string CapteurId){
-    cout << "Il faut encore implémenter cette fonction" << endl;
-    std::list <string> stringlist = {"Hello"};
-
-    return stringlist;
-}
 
 const string & Utilisateur::getUtilisateurId() const
 {

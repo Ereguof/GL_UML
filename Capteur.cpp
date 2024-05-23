@@ -30,12 +30,16 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
+<<<<<<< HEAD
 Capteur & Capteur::operator = ( const Capteur & unCapteur )
 // Algorithme :
 //
 {
   return *this;
 } //----- Fin de operator =
+=======
+
+>>>>>>> 42a7385 (commit pierre 5)
 
 string const & Capteur::getCapteurID() const
 {

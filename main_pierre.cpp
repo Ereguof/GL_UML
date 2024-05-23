@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string.h>
 #include "Utilisateur.h"
-
+#include "main.h"
+#include "Service.h"
 
 using namespace std;
 
@@ -13,12 +14,20 @@ int main(){
 
 	string  description = "fjmdsljf";
 
+  Date date;
+  date.annee = 2020;
+  date.mois = 18;
+  date.jour = 5;
+  date.heure =6;
+  date.minute =12;
+  date.seconde =12;
+
 
   Utilisateur Utilisateur1 = Utilisateur(attributId);
 
-  Utilisateur1.constulterNombrePoints(5);
+  Service service = Service();
+  
 
-  Utilisateur1.identifierZoneQualiteSimilaire(unite);
 
 
 }

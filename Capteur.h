@@ -38,11 +38,7 @@ public:
     double getLongitude() const;
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Capteur & operator = ( const Capteur & unCapteur );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+
 
 
 //-------------------------------------------- Constructeurs - destructeur

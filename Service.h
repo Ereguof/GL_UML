@@ -1,29 +1,35 @@
 /*************************************************************************
-                           Particulier  -  description
+                           Service  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Particulier> (fichier Particulier.h) ----------------
-#if ! defined ( Particulier_H )
-#define Particulier_H
+//---------- Interface de la classe <Service> (fichier Service.h) ----------------
+#if ! defined ( Service_H )
+#define Service_H
+using namespace std;
+#include <list>
+#include "Utilisateur.h"
+#include "Particulier.h"
+#include "Capteur.h"
+#include "Attribut.h"
+#include "Mesure.h"
 
 //--------------------------------------------------- Interfaces utilisées
-#include <string>
-#include "Utilisateur.h"
+
 //------------------------------------------------------------- Constantes
-using namespace std;
+
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Particulier>
+// Rôle de la classe <Service>
 //
 //
 //------------------------------------------------------------------------
 
-class Particulier : public Utilisateur
+class Service
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -34,28 +40,39 @@ public:
     //
     // Contrat :
     //
-    string const & getCapteurID() const;
-    int getNbPoints() const;
-    int getFiabilite() const;
-    void setCapteurID(const string& newCapteurID);
+
+    int constulterNombrePoints (int Id);
+
+
+    int qualiteAirZoneCirculairePeriode(double latitude, double longitude, Date debut, Date fin, int rayon);
+
+    std::list<string> identifierZoneQualiteSimilaire(string CapteurId);
+
+    int qualiteAirZoneCirculaireMoment(double latitude, double longitude, Date jour);
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-
-//-------------------------------------------- Constructeurs - destructeur
-    Particulier ( const Particulier & unParticulier );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-    Particulier ( string userID_, string capteurID_ = NULL);
+    Service & operator = ( const Service & unService );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Particulier ( );
+
+//-------------------------------------------- Constructeurs - destructeur
+    Service ( const Service & unService );
+    // Mode d'emploi (constructeur de copie) :
+    //
+    // Contrat :
+    //
+
+    Service ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    virtual ~Service ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -65,13 +82,15 @@ public:
 
 private:
 //----------------------------------------------------- Méthodes protégées
-
+  std::list<Utilisateur> listeUtilisateur;
+  std::list<Particulier> listeParticulier;
+  std::list<Capteur> listeCapteur;
+  std::list<Attribut> listeAttribut;
+  std::list<Mesure> listeMesure;
 //----------------------------------------------------- Attributs protégés
-string capteurID;
-int nbPoints = 0;
-int fiabilite = 1;
+
 };
 
-//-------------------------------- Autres définitions dépendantes de <Particulier>
+//-------------------------------- Autres définitions dépendantes de <Service>
 
-#endif // Particulier_H
+#endif // Service_H
