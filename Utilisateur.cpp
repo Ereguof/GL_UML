@@ -34,6 +34,12 @@ using namespace std;
 
 //------------------------------------------------- Surcharge d'opérateurs
 
+int Utilisateur::qualiteAirZoneCirculaireMoment(double latitude, double longitude, Date jour){
+
+
+  
+}
+
 
 int Utilisateur::constulterNombrePoints(int Id){
     cout << "La fonction constulterNombrePoints n'a pas été implémentéé, elle retourne juste l'id en entrée" << endl;

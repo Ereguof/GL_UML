@@ -10,6 +10,7 @@
 #if ! defined ( Utilisateur_H )
 #define Utilisateur_H
 #include <list>
+#include "main.h"
 using namespace std;
 //--------------------------------------------------- Interfaces utilisées
 
@@ -23,16 +24,6 @@ using namespace std;
 //
 //------------------------------------------------------------------------
 
-typedef struct
-{
-    int annee;
-    int mois;
-    int jour;
-    int heure;
-    int minute;
-    int seconde;
-
-} Date;
 
 
 class Utilisateur
@@ -56,7 +47,7 @@ public:
 
     std::list<string> identifierZoneQualiteSimilaire(string CapteurId);
 
-
+    int qualiteAirZoneCirculaireMoment(double latitude, double longitude, Date jour);
 //------------------------------------------------- Surcharge d'opérateurs
     Utilisateur & operator = ( const Utilisateur & unUtilisateur );
     // Mode d'emploi :
