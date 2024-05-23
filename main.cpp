@@ -12,17 +12,6 @@ using namespace std;
 #include "Attribut.h"
 
 
-// typedef struct
-// {
-//     int annee;
-//     int mois;
-//     int jour;
-//     int heure;
-//     int minute;
-//     int seconde;
-
-// } Date;
-
 list < Attribut > listeAttributs;
 
 int lireDataset(string nomDossier)

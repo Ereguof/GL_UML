@@ -15,6 +15,7 @@
 using namespace std;
 #include <iostream>
 #include <string.h>
+#include "Utilisateur.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
