@@ -1,12 +1,12 @@
 /*************************************************************************
-                           Mesure  -  description
+                           Fournisseur  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Mesure> (fichier Mesure.cpp) ------------
+//---------- Réalisation de la classe <Fournisseur> (fichier Fournisseur.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,56 +15,56 @@ using namespace std;
 #include <iostream>
 #include <string.h>
 //------------------------------------------------------ Include personnel
-#include "Mesure.h"
+#include "Fournisseur.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Mesure::Méthode ( liste des paramètres )
+// type Fournisseur::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
-
+bool Fournisseur::passerEnModePrivilegie (string motDePasse) const
+{
+    return true;
+}
 //-------------------------------------------- Constructeurs - destructeur
-Mesure::Mesure ( const Mesure & unMesure )
+Fournisseur::Fournisseur ( const Fournisseur & unFournisseur )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Mesure>" << endl;
+    cout << "Appel au constructeur de copie de <Fournisseur>" << endl;
 #endif
-} //----- Fin de Mesure (constructeur de copie)
+} //----- Fin de Fournisseur (constructeur de copie)
 
-Mesure::Mesure (Date date_, string capteurID_, string attributID_, double valeur_)
+Fournisseur::Fournisseur (string purificateurID_)
 {
-    this->date = date_;
-    this->capteurID = capteurID_;
-    this->attributID = attributID_;
-    this->valeur = valeur_;
+    this->purificateurID = purificateurID_;
 }
 
 
-Mesure::Mesure ( )
+Fournisseur::Fournisseur ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Mesure>" << endl;
+    cout << "Appel au constructeur de <Fournisseur>" << endl;
 #endif
-} //----- Fin de Mesure
+} //----- Fin de Fournisseur
 
 
-Mesure::~Mesure ( )
+Fournisseur::~Fournisseur ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Mesure>" << endl;
+    cout << "Appel au destructeur de <Fournisseur>" << endl;
 #endif
-} //----- Fin de ~Mesure
+} //----- Fin de ~Fournisseur
 
 
 //------------------------------------------------------------------ PRIVE
