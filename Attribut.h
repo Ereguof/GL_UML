@@ -34,8 +34,8 @@ public:
     //
     // Contrat :
     //
-   string getAttributId() const;
-   int getUnite() const;
+   const string & getAttributId() const;
+   const string & getUnite() const;
    const string & getDescription() const;
 
 
@@ -52,7 +52,7 @@ public:
     // Contrat :
     //
 
-    Attribut(string attributId_,  int unite_, string description_);
+    Attribut(string attributId_,  string unite_, string description_);
     virtual ~Attribut ( );
     // Mode d'emploi :
     //
@@ -66,7 +66,7 @@ private:
 
 //----------------------------------------------------- Attributs protégés
   string attributId;
-  int unite;
+  string unite;
   string description;
 
 

@@ -13,10 +13,12 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <string.h>
 
 //------------------------------------------------------ Include personnel
 #include "Utilisateur.h"
 
+ using namespace std;
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
@@ -30,12 +32,11 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Utilisateur & Utilisateur::operator = ( const Utilisateur & unUtilisateur )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
 
+const string & Utilisateur::getUtilisateurId() const
+{
+    return UtilisateurId;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 Utilisateur::Utilisateur ( const Utilisateur & unUtilisateur )
@@ -66,6 +67,19 @@ Utilisateur::~Utilisateur ( )
     cout << "Appel au destructeur de <Utilisateur>" << endl;
 #endif
 } //----- Fin de ~Utilisateur
+
+Utilisateur::Utilisateur (string id)
+// Algorithme :
+//
+{
+
+UtilisateurId = id;
+#ifdef MAP
+    cout << "Appel au constructeur de <Utilisateur>" << endl;
+#endif
+} //----- Fin de Utilisateur
+
+
 
 
 //------------------------------------------------------------------ PRIVE

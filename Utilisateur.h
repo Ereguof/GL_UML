@@ -10,6 +10,7 @@
 #if ! defined ( Utilisateur_H )
 #define Utilisateur_H
 
+using namespace std;
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes
@@ -33,7 +34,7 @@ public:
     //
     // Contrat :
     //
-
+    const string & getUtilisateurId() const;
 
 //------------------------------------------------- Surcharge d'opérateurs
     Utilisateur & operator = ( const Utilisateur & unUtilisateur );
@@ -56,6 +57,9 @@ public:
     // Contrat :
     //
 
+    Utilisateur (string Id);
+
+
     virtual ~Utilisateur ( );
     // Mode d'emploi :
     //
@@ -66,7 +70,7 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-
+  string UtilisateurId;
 //----------------------------------------------------- Attributs protégés
 
 };

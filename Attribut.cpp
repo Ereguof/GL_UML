@@ -28,17 +28,17 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-string Attribut::getAttributId() const
+const string & Attribut::getAttributId() const
 {
     return attributId;
 }
 
-int Attribut::getUnite() const
+const string & Attribut::getUnite() const
 {
     return unite;
 }
 
-const std::string & Attribut::getDescription() const
+const string & Attribut::getDescription() const
 {
     return description;
 }
@@ -46,7 +46,7 @@ const std::string & Attribut::getDescription() const
 //-------------------------------------------- Constructeurs - destructeur
 
 
-Attribut::Attribut (string attributId_, int unite_, string description_){
+Attribut::Attribut (string attributId_, string unite_, string description_){
 	unite = unite_;
 	attributId = attributId_;
 	description = description_;
