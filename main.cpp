@@ -3,7 +3,7 @@
 using namespace std;
 #include <iostream>
 #include <fstream>
-#include <string.h>
+#include <string>
 #include <Mesure.h>
 #include <Fournisseur.h>
 #include <Utilisateur.h>
@@ -25,12 +25,43 @@ typedef struct
 
 int lireDataset(string nomDossier)
 {
-    string file;
-    ifstream rFlux(nomDossier);
-    rFlux.open(nomDossier);
-    if ((rFlux.rdstate() & ifstream::failbit) != 0)
+    string fileAttribut = nomDossier + "/attributes.csv";
+    string fileCapteur = nomDossier + "/sensors.csv";
+    string fileMesure = nomDossier + "/measures.csv";
+    string fileFournisseur = nomDossier + "/providers.csv";
+    string filePurificateur = nomDossier + "/cleaners.csv";
+    string fileParticuliers = nomDossier + "/users.csv";
+    string fileBannis = nomDossier + "/bannis.csv";
+
+    ifstream rFluxAttribut;
+    rFluxAttribut.open(fileAttribut);
+    if ((rFluxAttribut.rdstate() & ifstream::failbit) != 0)
     {
-        cerr << "Erreur : le fichier ne peut être ouvert, vérifiez sa validité" << endl;
+        cerr << "Erreur : le fichier attributes.csv ne peut être ouvert, vérifiez sa validité" << endl;
+    } else
+    {
+        string ligne;
+        getline(rFluxAttribut, ligne);
+        if (rFluxAttribut)
+        {
+            int start;
+            int end;
+            
+            end = ligne.find(' ');
+            data.ip = ligne.substr(0, end);
+
+            start = end+1;
+            end = ligne.find(' ', start);
+            data.userNameLog = ligne.substr(start, end-start);
+
+            start = end+1;
+            end = ligne.find(' ', start);
+            data.nameUser = ligne.substr(start, end-start);
+
+            start = end+2;
+            end = start+11;
+            data.date = ligne.substr(start, end-start);
+        }
     }
 }
 
