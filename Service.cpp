@@ -68,6 +68,11 @@ int Service::analyserQualiteDonnees(string CapteurId){
     return 0;
 }
 
+int Service::lireDataSet(){
+
+  cout << "Il faut encore implémenter cette fonction(recupererdonnees)"<<endl;
+  return 0;
+}
 //------------------------------------------------- Surcharge d'opérateurs
 
 

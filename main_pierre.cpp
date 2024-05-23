@@ -34,6 +34,7 @@ int main(){
   service.qualiteAirZoneCirculaireMoment(10.0, 10.0, date);
   service.observerImpactPurificateur("50");
   service.analyserQualiteDonnees("50");
+  service.lireDataSet();
 
 
 }

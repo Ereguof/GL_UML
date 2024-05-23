@@ -54,7 +54,7 @@ public:
 
     int analyserQualiteDonnees(string CapteurId);
 
-
+    int lireDataSet();
 //------------------------------------------------- Surcharge d'opérateurs
     Service & operator = ( const Service & unService );
     // Mode d'emploi :
