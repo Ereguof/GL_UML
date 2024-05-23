@@ -89,8 +89,13 @@ int lireDataset(string nomDossier)
             double longitude = stod(ligne.substr(start, end-start));
 
             Capteur cap(capteurID, latitude, longitude);
+            cout << "CapteurID:" << cap.getCapteurID() << " Latitude:" << cap.getLatitude() << " Longitude:" << cap.getLongitude() << endl;
             listeCapteur.push_back(cap);
+
+            // Capteur premierElement = listeCapteur.front();
+            // cout << "CapteurID:" << premierElement.getCapteurID() << " Latitude:" << premierElement.getLatitude() << " Longitude:" << premierElement.getLongitude() << endl;
         }
+
         for (list<Capteur>::iterator it = listeCapteur.begin(); it != listeCapteur.end(); ++it) {
             cout << "CapteurID:" << it->getCapteurID() << " Latitude:" << it->getLatitude() << " Longitude:" << it->getLongitude() << endl;
         }

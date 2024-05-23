@@ -10,7 +10,7 @@
 #if ! defined ( Purificateur_H )
 #define Purificateur_H
 #include <string.h>
-#include <main.h>
+#include "main.h"
 using namespace std;
 
 
@@ -38,7 +38,7 @@ public:
    const string & getDescription() const;
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Xxx & operator = ( const Xxx & unXxx );
+    Purificateur & operator = ( const Purificateur & unXxx );
     // Mode d'emploi :
     //
     // Contrat :
@@ -46,7 +46,7 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Xxx ( const Xxx & unXxx );
+    Purificateur ( const Purificateur & unXxx );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :

@@ -42,7 +42,7 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Capteur ( const Capteur & unCapteur );
+    // Capteur ( const Capteur & unCapteur );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
