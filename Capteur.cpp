@@ -36,7 +36,20 @@ Capteur & Capteur::operator = ( const Capteur & unCapteur )
 {
 } //----- Fin de operator =
 
+string Capteur::getCapteurID() const
+{
+    return CapteurID;
+}
 
+double Capteur::getLatitude() const
+{
+    return latitude;
+}
+
+double Capteur::getLongitude() const
+{
+    return longitude;
+}
 //-------------------------------------------- Constructeurs - destructeur
 Capteur::Capteur ( const Capteur & unCapteur )
 // Algorithme :
@@ -48,10 +61,13 @@ Capteur::Capteur ( const Capteur & unCapteur )
 } //----- Fin de Capteur (constructeur de copie)
 
 
-Capteur::Capteur ( )
+Capteur::Capteur ( string monCapteurID, double maLatitude, double maLongitude)
 // Algorithme :
 //
 {
+  CapteurID = monCapteurID;
+  latitude = maLatitude;
+  longitude = maLongitude;
 #ifdef MAP
     cout << "Appel au constructeur de <Capteur>" << endl;
 #endif

@@ -9,9 +9,9 @@
 //---------- Interface de la classe <Capteur> (fichier Capteur.h) ----------------
 #if ! defined ( Capteur_H )
 #define Capteur_H
-
+#include <string>
 //--------------------------------------------------- Interfaces utilisées
-
+using namespace std;
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -33,7 +33,9 @@ public:
     //
     // Contrat :
     //
-
+    string getCapteurID() const;
+    double getLatitude() const;
+    double getLongitude() const;
 
 //------------------------------------------------- Surcharge d'opérateurs
     Capteur & operator = ( const Capteur & unCapteur );
@@ -50,7 +52,7 @@ public:
     // Contrat :
     //
 
-    Capteur ( );
+    Capteur (string monCapteurID, double maLatitude, double maLongitude );
     // Mode d'emploi :
     //
     // Contrat :
@@ -68,7 +70,9 @@ private:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-
+string CapteurID;
+double latitude;
+double longitude;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Capteur>
