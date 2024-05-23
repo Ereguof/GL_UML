@@ -34,6 +34,7 @@ Capteur & Capteur::operator = ( const Capteur & unCapteur )
 // Algorithme :
 //
 {
+  return *this;
 } //----- Fin de operator =
 
 string const & Capteur::getCapteurID() const

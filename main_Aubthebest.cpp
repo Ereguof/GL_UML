@@ -15,8 +15,7 @@ int main(){
   cout<<monCapteur.getCapteurID()<<endl;
   string userID = "1";
   Particulier James(userID);
-  cout<<James.getCapteurID()<<endl;
-  cout<<James.getUtilisateurID()<<endl;
+  cout<<James.getUtilisateurId()<<endl;
 
   cout<<James.getNbPoints()<<endl;
   cout<<James.getFiabilite()<<endl;

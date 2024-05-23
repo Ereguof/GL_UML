@@ -16,6 +16,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Particulier.h"
+#include "Utilisateur.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -34,6 +35,8 @@ Particulier & Particulier::operator = ( const Particulier & unParticulier )
 // Algorithme :
 //
 {
+  return *this;
+
 } //----- Fin de operator =
 
 string const & Particulier::getCapteurID() const
