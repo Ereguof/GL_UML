@@ -34,6 +34,9 @@ public:
     //
     // Contrat :
     //
+  int getAttributId() const;
+   int getUnite() const;
+   const string & getDescription() const;
 
 
 

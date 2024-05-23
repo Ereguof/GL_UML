@@ -28,7 +28,20 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
+int Attribut::getAttributId() const
+{
+    return attributId;
+}
 
+int Attribut::getUnite() const
+{
+    return unite;
+}
+
+const std::string & Attribut::getDescription() const
+{
+    return description;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 
