@@ -12,16 +12,16 @@ using namespace std;
 #include "Attribut.h"
 
 
-typedef struct
-{
-    int annee;
-    int mois;
-    int jour;
-    int heure;
-    int minute;
-    int seconde;
+// typedef struct
+// {
+//     int annee;
+//     int mois;
+//     int jour;
+//     int heure;
+//     int minute;
+//     int seconde;
 
-} Date;
+// } Date;
 
 list < Attribut > listeAttributs;
 
@@ -61,10 +61,10 @@ int lireDataset(string nomDossier)
             end = ligne.find(';', start);
             string description = ligne.substr(start, end-start);
 
-            // cout << "AttributID: " << attributID << " Unit: " << unit << " Description: " << description << endl;
+            //cout << "AttributID: " << attributID << " Unit: " << unit << " Description: " << description << endl;
             Attribut attribut(attributID, unit, description);
             listeAttributs.push_back(attribut);
-            //cout << "AttributID: " << listeAttributs.front().attributID << " Unit: " << listeAttributs.front().unit << " Description: " << listeAttributs.front().description << endl;
+            cout << "AttributID:" << listeAttributs.front().getAttributId() << " Unit:" << listeAttributs.front().getUnite() << " Description:" << listeAttributs.front().getDescription() << endl;
         }
     }
     return 0;
