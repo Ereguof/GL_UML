@@ -3,13 +3,13 @@
 
 #include <string>
 
-struct Date {
+typedef struct{
     int annee;
     int mois;
     int jour;
     int heure;
     int minute;
     int seconde;
-};
+} Date;
 
 #endif // MAIN_H
