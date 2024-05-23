@@ -27,51 +27,47 @@ using namespace std;
 
 class Mesure
 {
-//----------------------------------------------------------------- PUBLIC
+    //----------------------------------------------------------------- PUBLIC
 
-public:
-//----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
-
-//-------------------------------------------- Constructeurs - destructeur
-    Mesure ( const Mesure & unMesure );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-    Mesure ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    Mesure(int MesureId_,  int unite_, string description_);
-    virtual ~Mesure ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-//------------------------------------------------------------------ PRIVE
-
-private:
-//----------------------------------------------------- Méthodes protégées
-
-//----------------------------------------------------- Mesures protégés
-int MesureId;
-int unite;
-string description;
-
-	
+    public:
+    //----------------------------------------------------- Méthodes publiques
+        // type Méthode ( liste des paramètres );
+        // Mode d'emploi :
+        //
+        // Contrat :
+        //
 
 
+
+    //-------------------------------------------- Constructeurs - destructeur
+        Mesure ( const Mesure & unMesure );
+        // Mode d'emploi (constructeur de copie) :
+        //
+        // Contrat :
+        //
+
+        Mesure ( );
+        // Mode d'emploi :
+        //
+        // Contrat :
+        //
+
+        Mesure(int MesureId_,  int unite_, string description_);
+        virtual ~Mesure ( );
+        // Mode d'emploi :
+        //
+        // Contrat :
+        //
+
+    //------------------------------------------------------------------ PRIVE
+
+    protected:
+    //----------------------------------------------------- Méthodes protégées
+
+    //----------------------------------------------------- Mesures protégés
+    int date;
+    int unite;
+    string description;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Mesure>
