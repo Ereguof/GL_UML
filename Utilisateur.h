@@ -9,7 +9,7 @@
 //---------- Interface de la classe <Utilisateur> (fichier Utilisateur.h) ----------------
 #if ! defined ( Utilisateur_H )
 #define Utilisateur_H
-
+#include <list>
 using namespace std;
 //--------------------------------------------------- Interfaces utilisées
 
@@ -53,6 +53,9 @@ public:
     const string & getUtilisateurId() const;
 
     int qualiteAirZoneCirculairePeriode(double latitude, double longitude, Date debut, Date fin, int rayon);
+
+    std::list<string> identifierZoneQualiteSimilaire(string CapteurId);
+
 
 //------------------------------------------------- Surcharge d'opérateurs
     Utilisateur & operator = ( const Utilisateur & unUtilisateur );

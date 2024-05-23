@@ -14,6 +14,7 @@
 using namespace std;
 #include <iostream>
 #include <string.h>
+#include <list>
 
 //------------------------------------------------------ Include personnel
 #include "Utilisateur.h"
@@ -44,7 +45,12 @@ int Utilisateur::qualiteAirZoneCirculairePeriode(double latitude, double longitu
     return 0;
 }
 
+list<string> Utilisateur :: identifierZoneQualiteSimilaire(string CapteurId){
+    cout << "Il faut encore implémenter cette fonction" << endl;
+    std::list <string> stringlist = {"Hello"};
 
+    return stringlist;
+}
 
 const string & Utilisateur::getUtilisateurId() const
 {

@@ -2,6 +2,7 @@
 #include <string.h>
 #include "Utilisateur.h"
 
+
 using namespace std;
 
 int main(){
@@ -16,6 +17,8 @@ int main(){
   Utilisateur Utilisateur1 = Utilisateur(attributId);
 
   Utilisateur1.constulterNombrePoints(5);
+
+  Utilisateur1.identifierZoneQualiteSimilaire(unite);
 
 
 }
