@@ -1,28 +1,29 @@
 /*************************************************************************
-                           Capteur  -  description
+                           Particulier  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Capteur> (fichier Capteur.h) ----------------
-#if ! defined ( Capteur_H )
-#define Capteur_H
-#include <string>
-//--------------------------------------------------- Interfaces utilisées
-using namespace std;
-//------------------------------------------------------------- Constantes
+//---------- Interface de la classe <Particulier> (fichier Particulier.h) ----------------
+#if ! defined ( Particulier_H )
+#define Particulier_H
 
+//--------------------------------------------------- Interfaces utilisées
+#include <string>
+#include "Utilisateur.h"
+//------------------------------------------------------------- Constantes
+using namespace std;
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Capteur>
+// Rôle de la classe <Particulier>
 //
 //
 //------------------------------------------------------------------------
 
-class Capteur
+class Particulier : public Utilisateur
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -34,11 +35,13 @@ public:
     // Contrat :
     //
     string const & getCapteurID() const;
-    double getLatitude() const;
-    double getLongitude() const;
+    int getNbPoints() const;
+    int getFiabilite() const;
+    void setCapteurID(const string& newCapteurID);
+
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Capteur & operator = ( const Capteur & unCapteur );
+    Particulier & operator = ( const Particulier & unParticulier );
     // Mode d'emploi :
     //
     // Contrat :
@@ -46,19 +49,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Capteur ( const Capteur & unCapteur );
+    Particulier ( const Particulier & unParticulier );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Capteur (string monCapteurID, double maLatitude, double maLongitude );
+    Particulier ( string userID_, string capteurID_ = NULL);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Capteur ( );
+    virtual ~Particulier ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -70,11 +73,11 @@ private:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-string CapteurID;
-double latitude;
-double longitude;
+string capteurID;
+int nbPoints = 0;
+int fiabilite = 1;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Capteur>
+//-------------------------------- Autres définitions dépendantes de <Particulier>
 
-#endif // Capteur_H
+#endif // Particulier_H

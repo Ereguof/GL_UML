@@ -1,28 +1,28 @@
 /*************************************************************************
-                           Capteur  -  description
+                           Particulier  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Capteur> (fichier Capteur.cpp) ------------
+//---------- Réalisation de la classe <Particulier> (fichier Particulier.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-#include <iostream>
 using namespace std;
+#include <iostream>
 
 //------------------------------------------------------ Include personnel
-#include "Capteur.h"
+#include "Particulier.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Capteur::Méthode ( liste des paramètres )
+// type Particulier::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
@@ -30,58 +30,60 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Capteur & Capteur::operator = ( const Capteur & unCapteur )
+Particulier & Particulier::operator = ( const Particulier & unParticulier )
 // Algorithme :
 //
 {
 } //----- Fin de operator =
 
-string const & Capteur::getCapteurID() const
+string const & Particulier::getCapteurID() const
 {
-    return CapteurID;
+    return capteurID;
 }
 
-double Capteur::getLatitude() const
+int Particulier::getNbPoints() const
 {
-    return latitude;
+    return nbPoints;
 }
 
-double Capteur::getLongitude() const
+int Particulier::getFiabilite() const
 {
-    return longitude;
+    return fiabilite;
+}
+
+void Particulier::setCapteurID(const string& newCapteurID){
+  capteurID = newCapteurID;
 }
 //-------------------------------------------- Constructeurs - destructeur
-Capteur::Capteur ( const Capteur & unCapteur )
+Particulier::Particulier ( const Particulier & unParticulier )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Capteur>" << endl;
+    cout << "Appel au constructeur de copie de <Particulier>" << endl;
 #endif
-} //----- Fin de Capteur (constructeur de copie)
+} //----- Fin de Particulier (constructeur de copie)
 
 
-Capteur::Capteur ( string monCapteurID, double maLatitude, double maLongitude)
+Particulier::Particulier ( string userID_ , string capteurID_): Utilisateur(userID_)
 // Algorithme :
 //
 {
-  CapteurID = monCapteurID;
-  latitude = maLatitude;
-  longitude = maLongitude;
+  capteurID = capteurID_;
 #ifdef MAP
-    cout << "Appel au constructeur de <Capteur>" << endl;
+    cout << "Appel au constructeur de <Particulier>" << endl;
 #endif
-} //----- Fin de Capteur
+} //----- Fin de Particulier
 
 
-Capteur::~Capteur ( )
+Particulier::~Particulier ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Capteur>" << endl;
+    cout << "Appel au destructeur de <Particulier>" << endl;
 #endif
-} //----- Fin de ~Capteur
+} //----- Fin de ~Particulier
 
 
 //------------------------------------------------------------------ PRIVE
