@@ -40,11 +40,12 @@ Mesure::Mesure ( const Mesure & unMesure )
 #endif
 } //----- Fin de Mesure (constructeur de copie)
 
-Mesure::Mesure (int MesureId_, int unite_, string description_){
-	unite = unite_;
-	MesureId = MesureId_;
-	description = description_;
-
+Mesure::Mesure (Date date_, string capteurID_, string attributID_, double valeur_)
+{
+    this->date = date_;
+    this->capteurID = capteurID_;
+    this->attributID = attributID_;
+    this->valeur = valeur_;
 }
 
 

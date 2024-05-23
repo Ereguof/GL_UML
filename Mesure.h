@@ -18,7 +18,16 @@ using namespace std;
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
+typedef struct
+{
+    int annee;
+    int mois;
+    int jour;
+    int heure;
+    int minute;
+    int seconde;
 
+} Date;
 //------------------------------------------------------------------------
 // Rôle de la classe <Mesure>
 //
@@ -52,7 +61,12 @@ class Mesure
         // Contrat :
         //
 
-        Mesure(int MesureId_,  int unite_, string description_);
+        Mesure(Date date_, string capteurID_, string attributID_, double valeur_);
+        // Mode d'emploi :
+        //
+        // Contrat :
+        //
+
         virtual ~Mesure ( );
         // Mode d'emploi :
         //
@@ -65,9 +79,10 @@ class Mesure
     //----------------------------------------------------- Méthodes protégées
 
     //----------------------------------------------------- Mesures protégés
-    int date;
-    int unite;
-    string description;
+    Date date;
+    string capteurID;
+    string attributID;
+    double valeur;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Mesure>
