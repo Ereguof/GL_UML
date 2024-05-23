@@ -33,6 +33,19 @@ using namespace std;
 
 //------------------------------------------------- Surcharge d'opérateurs
 
+
+int Utilisateur::constulterNombrePoints(int Id){
+    cout << "La fonction constulterNombrePoints n'a pas été implémentéé, elle retourne juste l'id en entrée" << endl;
+    return Id;
+}
+
+int Utilisateur::qualiteAirZoneCirculairePeriode(double latitude, double longitude, Date debut, Date fin, int rayon){
+    cout << "Il faut encore implémenter cette fonction" << endl;
+    return 0;
+}
+
+
+
 const string & Utilisateur::getUtilisateurId() const
 {
     return UtilisateurId;

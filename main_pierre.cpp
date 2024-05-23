@@ -15,6 +15,7 @@ int main(){
 
   Utilisateur Utilisateur1 = Utilisateur(attributId);
 
+  Utilisateur1.constulterNombrePoints(5);
 
 
 }

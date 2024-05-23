@@ -23,6 +23,18 @@ using namespace std;
 //
 //------------------------------------------------------------------------
 
+typedef struct
+{
+    int annee;
+    int mois;
+    int jour;
+    int heure;
+    int minute;
+    int seconde;
+
+} Date;
+
+
 class Utilisateur
 {
 //----------------------------------------------------------------- PUBLIC
@@ -34,7 +46,13 @@ public:
     //
     // Contrat :
     //
+    int constulterNombrePoints (int Id);
+
+
+
     const string & getUtilisateurId() const;
+
+    int qualiteAirZoneCirculairePeriode(double latitude, double longitude, Date debut, Date fin, int rayon);
 
 //------------------------------------------------- Surcharge d'opérateurs
     Utilisateur & operator = ( const Utilisateur & unUtilisateur );
