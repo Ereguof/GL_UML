@@ -1,81 +1,71 @@
 /*************************************************************************
-                           Attribut  -  description
+                           Utilisateur  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Attribut> (fichier Attribut.cpp) ------------
+//---------- Réalisation de la classe <Utilisateur> (fichier Utilisateur.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-#include <string.h>
+
 //------------------------------------------------------ Include personnel
-#include "Attribut.h"
+#include "Utilisateur.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Attribut::Méthode ( liste des paramètres )
+// type Utilisateur::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
 
-string Attribut::getAttributId() const
-{
-    return attributId;
-}
 
-int Attribut::getUnite() const
+//------------------------------------------------- Surcharge d'opérateurs
+Utilisateur & Utilisateur::operator = ( const Utilisateur & unUtilisateur )
+// Algorithme :
+//
 {
-    return unite;
-}
+} //----- Fin de operator =
 
-const std::string & Attribut::getDescription() const
-{
-    return description;
-}
 
 //-------------------------------------------- Constructeurs - destructeur
-
-
-Attribut::Attribut (string attributId_, int unite_, string description_){
-	unite = unite_;
-	attributId = attributId_;
-	description = description_;
-
-  #ifdef MAP
-      cout << "Appel au constructeur de <Attribut>" << endl;
-  #endif
-
-}
-
-
-Attribut::Attribut ( )
+Utilisateur::Utilisateur ( const Utilisateur & unUtilisateur )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Attribut>" << endl;
+    cout << "Appel au constructeur de copie de <Utilisateur>" << endl;
 #endif
-} //----- Fin de Attribut
+} //----- Fin de Utilisateur (constructeur de copie)
 
 
-Attribut::~Attribut ( )
+Utilisateur::Utilisateur ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Attribut>" << endl;
+    cout << "Appel au constructeur de <Utilisateur>" << endl;
 #endif
-} //----- Fin de ~Attribut
+} //----- Fin de Utilisateur
+
+
+Utilisateur::~Utilisateur ( )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au destructeur de <Utilisateur>" << endl;
+#endif
+} //----- Fin de ~Utilisateur
 
 
 //------------------------------------------------------------------ PRIVE

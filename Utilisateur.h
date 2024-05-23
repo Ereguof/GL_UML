@@ -1,15 +1,14 @@
 /*************************************************************************
-                           Attribut  -  description
+                           Utilisateur  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Attribut> (fichier Attribut.h) ----------------
-#if ! defined ( Attribut_H )
-#define Attribut_H
-using namespace std;
+//---------- Interface de la classe <Utilisateur> (fichier Utilisateur.h) ----------------
+#if ! defined ( Utilisateur_H )
+#define Utilisateur_H
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -18,12 +17,12 @@ using namespace std;
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Attribut>
+// Rôle de la classe <Utilisateur>
 //
 //
 //------------------------------------------------------------------------
 
-class Attribut
+class Utilisateur
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -34,26 +33,30 @@ public:
     //
     // Contrat :
     //
-   string getAttributId() const;
-   int getUnite() const;
-   const string & getDescription() const;
 
 
-
-//-------------------------------------------- Constructeurs - destructeur
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-    Attribut ( );
+//------------------------------------------------- Surcharge d'opérateurs
+    Utilisateur & operator = ( const Utilisateur & unUtilisateur );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    Attribut(string attributId_,  int unite_, string description_);
-    virtual ~Attribut ( );
+
+//-------------------------------------------- Constructeurs - destructeur
+    Utilisateur ( const Utilisateur & unUtilisateur );
+    // Mode d'emploi (constructeur de copie) :
+    //
+    // Contrat :
+    //
+
+    Utilisateur ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    virtual ~Utilisateur ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -61,19 +64,13 @@ public:
 
 //------------------------------------------------------------------ PRIVE
 
-private:
+protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-  string attributId;
-  int unite;
-  string description;
-
-
-
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <Attribut>
+//-------------------------------- Autres définitions dépendantes de <Utilisateur>
 
-#endif // Attribut_H
+#endif // Utilisateur_H

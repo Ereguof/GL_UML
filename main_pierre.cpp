@@ -7,7 +7,7 @@ using namespace std;
 
 int main(){
 
-	int attributId = 5;
+	string attributId = "5";
 
 	int unite = 100;
 
