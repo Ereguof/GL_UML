@@ -33,31 +33,39 @@ using namespace std;
 
 int Service::qualiteAirZoneCirculaireMoment(double latitude, double longitude, Date jour){
 
-  cout << "Il faut encore implémenter cette fonction, elle retourne 0 tout le temps" << endl;
+  cout << "Il faut encore implémenter cette fonction(zone moment)" << endl;
   return 0;
 }
 
 
 int Service::constulterNombrePoints(int Id){
-    cout << "La fonction constulterNombrePoints n'a pas été implémentéé, elle retourne juste l'id en entrée" << endl;
+    cout << "La fonction constulterNombrePoints n'a pas été implémentéé, elle retourne juste l'id en entrée(nbpoint)" << endl;
     return Id;
 }
 
 int Service::qualiteAirZoneCirculairePeriode(double latitude, double longitude, Date debut, Date fin, int rayon){
-    cout << "Il faut encore implémenter cette fonction"<< endl;
+    cout << "Il faut encore implémenter cette fonction(qualiteair)"<< endl;
 
     return 0;
 }//------------------------------------------------- Surcharge d'opérateurs
 
+int Service::observerImpactPurificateur(string PurificateurId){
+  cout << "Il faut encore implémenter cette fonction (observerimpact)"<< endl;
 
+  return 0;
 
-
+}
 
 list<string> Service :: identifierZoneQualiteSimilaire(string CapteurId){
-    cout << "Il faut encore implémenter cette fonction" << endl;
+    cout << "Il faut encore implémenter cette fonction(zone qualite)" << endl;
     std::list <string> stringlist = {"Hello"};
 
     return stringlist;
+}
+
+int Service::analyserQualiteDonnees(string CapteurId){
+    cout << "Il faut encore implémenter cette fonction(qualite donnees)" << endl;
+    return 0;
 }
 
 //------------------------------------------------- Surcharge d'opérateurs

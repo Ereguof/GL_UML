@@ -50,6 +50,10 @@ public:
 
     int qualiteAirZoneCirculaireMoment(double latitude, double longitude, Date jour);
 
+    int observerImpactPurificateur(string PurificateurId);
+
+    int analyserQualiteDonnees(string CapteurId);
+
 
 //------------------------------------------------- Surcharge d'opérateurs
     Service & operator = ( const Service & unService );

@@ -26,8 +26,14 @@ int main(){
   Utilisateur Utilisateur1 = Utilisateur(attributId);
 
   Service service = Service();
-  
 
+
+  service.constulterNombrePoints(5);
+  service.qualiteAirZoneCirculairePeriode(50.0, 50.0, date, date, 5);
+  service.identifierZoneQualiteSimilaire(unite);
+  service.qualiteAirZoneCirculaireMoment(10.0, 10.0, date);
+  service.observerImpactPurificateur("50");
+  service.analyserQualiteDonnees("50");
 
 
 }
