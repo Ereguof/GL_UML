@@ -11,9 +11,15 @@ using namespace std;
 #include "Utilisateur.h"
 #include "Capteur.h"
 #include "Attribut.h"
+#include "Purificateur.h"
 
 
 list < Attribut > listeAttribut;
+list < Capteur > listeCapteur;
+list < Mesure > listeMesure;
+list < Fournisseur > listeFournisseur;
+list < Utilisateur > listeUtilisateur;
+list < Purificateur > listePurificateur;
 
 int lireDataset(string nomDossier)
 {
@@ -34,8 +40,7 @@ int lireDataset(string nomDossier)
     {
         string ligne;
         getline(rFluxAttribut, ligne);
-        getline(rFluxAttribut, ligne);
-        if (rFluxAttribut)
+        while (getline(rFluxAttribut, ligne))
         {
             int start;
             int end;
@@ -51,13 +56,43 @@ int lireDataset(string nomDossier)
             end = ligne.find(';', start);
             string description = ligne.substr(start, end-start);
 
-            //cout << "AttributID: " << attributID << " Unit: " << unit << " Description: " << description << endl;
             Attribut att(attributID, unit, description);
             listeAttribut.push_back(att);
+        }
+        for (list<Attribut>::iterator it = listeAttribut.begin(); it != listeAttribut.end(); ++it) {
+            cout << "AttributID:" << it->getAttributId() << " Unit:" << it->getUnite() << " Description:" << it->getDescription() << endl;
+        }
+    }
+
+    ifstream rfFluxCapteur;
+    rfFluxCapteur.open(fileCapteur);
+    if ((rfFluxCapteur.rdstate() & ifstream::failbit) != 0)
+    {
+        cerr << "Erreur : le fichier sensors.csv ne peut être ouvert, vérifiez sa validité" << endl;
+    } else
+    {
+        string ligne;
+        while (getline(rfFluxCapteur, ligne))
+        {
+            int start;
+            int end;
             
-            for (list<Attribut>::iterator it = listeAttribut.begin(); it != listeAttribut.end(); ++it) {
-                cout << "AttributID:" << it->getAttributId() << " Unit:" << it->getUnite() << " Description:" << it->getDescription() << endl;
-            }
+            end = ligne.find(';');
+            string capteurID = ligne.substr(0, end);
+
+            start = end+1;
+            end = ligne.find(';', start);
+            double latitude = stod(ligne.substr(start, end-start));
+
+            start = end+1;
+            end = ligne.find(';', start);
+            double longitude = stod(ligne.substr(start, end-start));
+
+            Capteur cap(capteurID, latitude, longitude);
+            listeCapteur.push_back(cap);
+        }
+        for (list<Capteur>::iterator it = listeCapteur.begin(); it != listeCapteur.end(); ++it) {
+            cout << "CapteurID:" << it->getCapteurID() << " Latitude:" << it->getLatitude() << " Longitude:" << it->getLongitude() << endl;
         }
     }
     return 0;
