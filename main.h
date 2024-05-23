@@ -12,6 +12,4 @@ struct Date {
     int seconde;
 };
 
-int lireDataset(const std::string& nomDossier);
-
 #endif // MAIN_H

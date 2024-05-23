@@ -62,7 +62,8 @@ int lireDataset(string nomDossier)
 
 int main()
 {
-    lireDataset("dataset");
+    string nomDossier = "dataset";
+    lireDataset(nomDossier);
 
     return 0;
 }

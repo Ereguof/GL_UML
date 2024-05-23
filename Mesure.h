@@ -15,19 +15,10 @@
 using namespace std;
 #include <iostream>
 #include <string.h>
+#include "main.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-typedef struct
-{
-    int annee;
-    int mois;
-    int jour;
-    int heure;
-    int minute;
-    int seconde;
-
-} Date;
 //------------------------------------------------------------------------
 // Rôle de la classe <Mesure>
 //
