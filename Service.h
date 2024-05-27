@@ -16,7 +16,10 @@ using namespace std;
 #include "Capteur.h"
 #include "Attribut.h"
 #include "Mesure.h"
+#include "Purificateur.h"
+#include "Fournisseur.h"
 #include <iterator>
+
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -88,11 +91,13 @@ public:
 
 private:
 //----------------------------------------------------- Méthodes protégées
-  std::vector<Utilisateur> listeUtilisateur;
   std::vector<Particulier> listeParticulier;
   std::vector<Capteur> listeCapteur;
   std::vector<Attribut> listeAttribut;
   std::vector<Mesure> listeMesure;
+  std::vector<Purificateur> listePurificateur;
+  std::vector<Fournisseur> listeFournisseur;
+
 //----------------------------------------------------- Attributs protégés
 
 };

@@ -56,35 +56,98 @@ int Service::observerImpactPurificateur(string PurificateurId){
 
 }
 
-Int Service :: CalculeIndiceAtmo(Mesure mesure1, Mesure mesure2, Mesure mesure3, Mesure mesure4){
+int getSubIndex(int value, const std::vector<int>& thresholds) {
+    for (int i = 0; i < thresholds.size(); ++i) {
+        if (value <= thresholds[i]) {
+            return i + 1;
+        }
+    }
+    return thresholds.size() + 1;
+}
+
+int calculeMax4(int a, int b, int c, int d){
+  int maxVal = a; // Assume the first value is the largest initially
+
+  if (b > maxVal) {
+      maxVal = b;
+  }
+  if (c > maxVal) {
+      maxVal = c;
+  }
+  if (d > maxVal) {
+      maxVal = d;
+  }
+
+  return maxVal;
+
+}
+
+int calculeIndiceAtmo(Mesure mesureO2, Mesure mesureSO2, Mesure mesureNO2, Mesure mesurePM10){
+      int valeur1 = mesureO2.getValeur();
+      int valeur2 = mesureSO2.getValeur();
+      int valeur3 = mesureNO2.getValeur();
+      int valeur4 = mesurePM10.getValeur();
+
+    
+      vector<int> O3Thresholds = {29, 54, 79, 104, 129, 149, 179, 209, 239};
+      vector<int> SO2Thresholds = {39, 79, 119, 159, 199, 249, 299, 399, 499};
+      vector<int> NO2Thresholds = {29, 54, 84, 109, 134, 164, 199, 274, 399};
+      vector<int> PM10Thresholds = {6, 13, 20, 27, 34, 41, 49, 64, 79};
+
+
+      int O3Index = getSubIndex(valeur1, O3Thresholds);
+      int SO2Index = getSubIndex(valeur2, SO2Thresholds);
+      int NO2Index = getSubIndex(valeur3, NO2Thresholds);
+      int PM10Index = getSubIndex(valeur4, PM10Thresholds);
+
+
+
+      return calculeMax4(O3Index, SO2Index, NO2Index, PM10Index);
+
+
 
 
 }
 
 
 int Service:: moyenneIndiceAtmo(string CapteurId, Date debut, Date fin){
-    int moyenne;
-
-
-    for (vector<int>::iterator it = listeMesure.begin(); it != listeMesure.end(); it += 4) {
+    int longueur = 0;
+    int somme = 0;
+    for (vector<Mesure>::iterator it = listeMesure.begin(); it != listeMesure.end(); ++it) {
 
       Mesure mesureEnCours = *it;
       // une fois qu'on a la mesure, on regarde si c'est le bon capteur et une date valide
-      if (mesureEnCours.capteurID == CapteurId){
+      if (mesureEnCours.getCapteurID() == CapteurId){
           //on doit faire les verifs pour les dates
-          Date DateEnCours = *it.date;
+          Date DateEnCours = mesureEnCours.getDate();
           if (debut.annee <= DateEnCours.annee && debut.mois <= DateEnCours.mois && debut.jour <= DateEnCours.jour
           && debut.heure <= DateEnCours.heure && debut.minute <= DateEnCours.minute && debut.seconde <= DateEnCours.seconde){
 
                 if (fin.annee >= DateEnCours.annee && fin.mois >= DateEnCours.mois && fin.jour >= DateEnCours.jour
-                && fin.heure >= DateEnCours.heure && fin.minute >= DateEnCours.minute && fin.seconde >= DateEnCours.seconde)){
+                && fin.heure >= DateEnCours.heure && fin.minute >= DateEnCours.minute && fin.seconde >= DateEnCours.seconde){
 
-                        int indiceAtmo = (mesureEnCours, )
+                        auto it2 = it + 1;
+                        auto it3 = it2 + 1;
+                        auto it4 = it3 + 1;
 
-                }
+                        if (it4 < listeMesure.end()) {
+                            Mesure mesure2 = *it2;
+                            Mesure mesure3 = *it3;
+                            Mesure mesure4 = *it4;
+
+                            int indiceAtmo = calculeIndiceAtmo(mesureEnCours, mesure2, mesure3, mesure4);
+                            somme += indiceAtmo;
+                            longueur++;
+
+                        }
+               }
           }
-      }
-    }
+     }
+   }
+
+    if (longueur != 0)
+        return somme/longueur;
+    return -1;
 
 }
 
