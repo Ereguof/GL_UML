@@ -36,15 +36,12 @@ class Mesure
         //
         // Contrat :
         //
-
-
+        string const & getCapteurID() const;
+        string const & getAttributID() const;
+        double getValeur() const;
+        Date const & getDate() const;
 
     //-------------------------------------------- Constructeurs - destructeur
-        Mesure ( const Mesure & unMesure );
-        // Mode d'emploi (constructeur de copie) :
-        //
-        // Contrat :
-        //
 
         Mesure ( );
         // Mode d'emploi :

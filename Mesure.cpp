@@ -27,16 +27,27 @@ using namespace std;
 //
 //{
 //} //----- Fin de Méthode
+    string const & Mesure::getCapteurID() const
+    {
+        return capteurID;
+    }
+
+    string const & Mesure::getAttributID() const
+    {
+        return attributID;
+    }
+
+    double Mesure::getValeur() const
+    {
+        return valeur;
+    }
+
+    Date const & Mesure::getDate() const
+    {
+        return date;
+    }
 
 //-------------------------------------------- Constructeurs - destructeur
-Mesure::Mesure ( const Mesure & unMesure )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Mesure>" << endl;
-#endif
-} //----- Fin de Mesure (constructeur de copie)
 
 Mesure::Mesure (Date date_, string capteurID_, string attributID_, double valeur_)
 {
