@@ -56,9 +56,46 @@ int Service::observerImpactPurificateur(string PurificateurId){
 
 }
 
-list<string> Service :: identifierZoneQualiteSimilaire(string CapteurId){
+Int Service :: CalculeIndiceAtmo(Mesure mesure1, Mesure mesure2, Mesure mesure3, Mesure mesure4){
+
+
+}
+
+
+int Service:: moyenneIndiceAtmo(string CapteurId, Date debut, Date fin){
+    int moyenne;
+
+
+    for (vector<int>::iterator it = listeMesure.begin(); it != listeMesure.end(); it += 4) {
+
+      Mesure mesureEnCours = *it;
+      // une fois qu'on a la mesure, on regarde si c'est le bon capteur et une date valide
+      if (mesureEnCours.capteurID == CapteurId){
+          //on doit faire les verifs pour les dates
+          Date DateEnCours = *it.date;
+          if (debut.annee <= DateEnCours.annee && debut.mois <= DateEnCours.mois && debut.jour <= DateEnCours.jour
+          && debut.heure <= DateEnCours.heure && debut.minute <= DateEnCours.minute && debut.seconde <= DateEnCours.seconde){
+
+                if (fin.annee >= DateEnCours.annee && fin.mois >= DateEnCours.mois && fin.jour >= DateEnCours.jour
+                && fin.heure >= DateEnCours.heure && fin.minute >= DateEnCours.minute && fin.seconde >= DateEnCours.seconde)){
+
+                        int indiceAtmo = (mesureEnCours, )
+
+                }
+          }
+      }
+    }
+
+}
+
+vector<string> Service :: identifierZoneQualiteSimilaire(string CapteurId, Date debut, Date fin){
     cout << "Il faut encore implémenter cette fonction(zone qualite)" << endl;
-    std::list <string> stringlist = {"Hello"};
+
+    vector<int> listSimilarity;
+    vector<string> listeRanking;
+    int moyenne_capteur_courant;
+
+    std::vector <string> stringlist = {"Hello"};
 
     return stringlist;
 }

@@ -1,4 +1,4 @@
-// Projet UML
+c// Projet UML
 
 using namespace std;
 #include <iostream>
@@ -48,7 +48,7 @@ int lireDataset(string nomDossier)
         {
             int start;
             int end;
-            
+
             end = ligne.find(';');
             string attributID = ligne.substr(0, end);
 
@@ -77,7 +77,7 @@ int lireDataset(string nomDossier)
         {
             int start;
             int end;
-            
+
             end = ligne.find(';');
             string capteurID = ligne.substr(0, end);
 

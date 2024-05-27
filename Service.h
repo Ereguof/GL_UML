@@ -10,12 +10,13 @@
 #if ! defined ( Service_H )
 #define Service_H
 using namespace std;
-#include <list>
+#include <vector>
 #include "Utilisateur.h"
 #include "Particulier.h"
 #include "Capteur.h"
 #include "Attribut.h"
 #include "Mesure.h"
+#include <iterator>
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -43,10 +44,9 @@ public:
 
     int constulterNombrePoints (int Id);
 
-
     int qualiteAirZoneCirculairePeriode(double latitude, double longitude, Date debut, Date fin, int rayon);
 
-    std::list<string> identifierZoneQualiteSimilaire(string CapteurId);
+    vector<string> identifierZoneQualiteSimilaire(string CapteurId, Date debut, Date fin);
 
     int qualiteAirZoneCirculaireMoment(double latitude, double longitude, Date jour);
 
@@ -55,6 +55,8 @@ public:
     int analyserQualiteDonnees(string CapteurId);
 
     int lireDataSet();
+
+    int moyenneIndiceAtmo(string CapteurId, Date debut, Date fin);
 //------------------------------------------------- Surcharge d'opérateurs
     Service & operator = ( const Service & unService );
     // Mode d'emploi :
@@ -86,11 +88,11 @@ public:
 
 private:
 //----------------------------------------------------- Méthodes protégées
-  std::list<Utilisateur> listeUtilisateur;
-  std::list<Particulier> listeParticulier;
-  std::list<Capteur> listeCapteur;
-  std::list<Attribut> listeAttribut;
-  std::list<Mesure> listeMesure;
+  std::vector<Utilisateur> listeUtilisateur;
+  std::vector<Particulier> listeParticulier;
+  std::vector<Capteur> listeCapteur;
+  std::vector<Attribut> listeAttribut;
+  std::vector<Mesure> listeMesure;
 //----------------------------------------------------- Attributs protégés
 
 };
