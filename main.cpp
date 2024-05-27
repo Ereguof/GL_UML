@@ -1,4 +1,4 @@
-c// Projet UML
+// Projet UML
 
 using namespace std;
 #include <iostream>
@@ -365,7 +365,33 @@ int main()
             string capteurID; 
             cout << endl << "Donnez l'ID du capteur considéré : " << endl;
             cin >> capteurID;
-            service->identifierZoneQualiteSimilaire(capteurID);
+            Date debut;
+            cout << "Donnez l'année de début : " << endl;
+            cin >> debut.annee;
+            cout << "Donnez le mois de début : " << endl;
+            cin >> debut.mois;
+            cout << "Donnez le jour de début : " << endl;
+            cin >> debut.jour;
+            cout << "Donnez l'heure de début : " << endl;
+            cin >> debut.heure;
+            cout << "Donnez les minutes de début : " << endl;
+            cin >> debut.minute;
+            cout << "Donnez les secondes de début : " << endl;
+            cin >> debut.seconde;
+            Date fin;
+            cout << "Donnez l'année de fin : " << endl;
+            cin >> fin.annee;
+            cout << "Donnez le mois de fin : " << endl;
+            cin >> fin.mois;
+            cout << "Donnez le jour de fin : " << endl;
+            cin >> fin.jour;
+            cout << "Donnez l'heure de fin : " << endl;
+            cin >> fin.heure;
+            cout << "Donnez les minutes de fin : " << endl;
+            cin >> fin.minute;
+            cout << "Donnez les secondes de fin : " << endl;
+            cin >> fin.seconde;
+            service->identifierZoneQualiteSimilaire(capteurID,debut,fin);
             break;
             }
 
