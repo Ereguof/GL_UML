@@ -35,20 +35,25 @@ using namespace std;
 //------------------------------------------------- Surcharge d'opérateurs
 
 
-const string & Utilisateur::getUtilisateurId() const
+const string & Utilisateur::getUtilisateurID() const
 {
-    return UtilisateurId;
+    return utilisateurID;
+}
+
+const string & Utilisateur::getCapteurID() const
+{
+    return capteurID;
 }
 
 //-------------------------------------------- Constructeurs - destructeur
-Utilisateur::Utilisateur ( const Utilisateur & unUtilisateur )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Utilisateur>" << endl;
-#endif
-} //----- Fin de Utilisateur (constructeur de copie)
+// Utilisateur::Utilisateur ( const Utilisateur & unUtilisateur )
+// // Algorithme :
+// //
+// {
+// #ifdef MAP
+//     cout << "Appel au constructeur de copie de <Utilisateur>" << endl;
+// #endif
+// } //----- Fin de Utilisateur (constructeur de copie)
 
 
 Utilisateur::Utilisateur ( )
@@ -70,12 +75,12 @@ Utilisateur::~Utilisateur ( )
 #endif
 } //----- Fin de ~Utilisateur
 
-Utilisateur::Utilisateur (string id)
+Utilisateur::Utilisateur (string utilisateurID_, string capteurID_)
 // Algorithme :
 //
 {
-
-UtilisateurId = id;
+    this->utilisateurID = utilisateurID_;
+    this->capteurID = capteurID_;
 #ifdef MAP
     cout << "Appel au constructeur de <Utilisateur>" << endl;
 #endif

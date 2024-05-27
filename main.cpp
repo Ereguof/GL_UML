@@ -90,7 +90,6 @@ int lireDataset(string nomDossier)
             double longitude = stod(ligne.substr(start, end-start));
 
             Capteur cap(capteurID, latitude, longitude);
-            cout << "CapteurID:" << cap.getCapteurID() << " Latitude:" << cap.getLatitude() << " Longitude:" << cap.getLongitude() << endl;
             listeCapteur.push_back(cap);
 
             // Capteur premierElement = listeCapteur.front();
@@ -189,9 +188,133 @@ int lireDataset(string nomDossier)
             Fournisseur four(fournisseurID, purificateurID);
             listeFournisseur.push_back(four);
         }
-        for (vector<Fournisseur>::iterator it = listeFournisseur.begin(); it != listeFournisseur.end(); ++it) {
-            cout << "FournisseurID:" << it->getFournisseurID() << " PurificateurID:" << it->getPurificateurID() << endl;
+        // for (vector<Fournisseur>::iterator it = listeFournisseur.begin(); it != listeFournisseur.end(); ++it) {
+        //     cout << "FournisseurID:" << it->getFournisseurID() << " PurificateurID:" << it->getPurificateurID() << endl;
+        // }
+    }
+
+    ifstream rfFluxPurificateur;
+    rfFluxPurificateur.open(filePurificateur);
+    if ((rfFluxPurificateur.rdstate() & ifstream::failbit) != 0)
+    {
+        cerr << "Erreur : le fichier cleaners.csv ne peut être ouvert, vérifiez sa validité" << endl;
+    } else
+    {
+        string ligne;
+        while (getline(rfFluxPurificateur, ligne))
+        {
+            int start;
+            int end;
+            
+            end = ligne.find(';');
+            string purificateurID = ligne.substr(0, end);
+
+            start = end+1;
+            end = ligne.find(';', start);
+            double latitude = stod(ligne.substr(start, end-start));
+
+            start = end+1;
+            end = ligne.find(';', start);
+            double longitude = stod(ligne.substr(start, end-start));
+
+            start = end+1;
+            end = ligne.find('-',start);
+            int anneeStart = stoi(ligne.substr(start, end-start));
+
+            start = end+1;
+            end = ligne.find('-', start);
+            int moisStart = stoi(ligne.substr(start, end-start));
+
+            start = end+1;
+            end = ligne.find(' ', start);
+            int jourStart = stoi(ligne.substr(start, end-start));
+
+            start = end+1;
+            end = ligne.find(':', start);
+            int heureStart = stoi(ligne.substr(start, end-start));
+
+            start = end+1;
+            end = ligne.find(':', start);
+            int minuteStart = stoi(ligne.substr(start, end-start));
+
+            start = end+1;
+            end = ligne.find(';', start);
+            int secondeStart = stoi(ligne.substr(start, end-start));
+
+            start = end+1;
+            end = ligne.find('-',start);
+            int anneeStop = stoi(ligne.substr(start, end-start));
+
+            start = end+1;
+            end = ligne.find('-', start);
+            int moisStop = stoi(ligne.substr(start, end-start));
+
+            start = end+1;
+            end = ligne.find(' ', start);
+            int jourStop = stoi(ligne.substr(start, end-start));
+
+            start = end+1;
+            end = ligne.find(':', start);
+            int heureStop = stoi(ligne.substr(start, end-start));
+
+            start = end+1;
+            end = ligne.find(':', start);
+            int minuteStop = stoi(ligne.substr(start, end-start));
+
+            start = end+1;
+            end = ligne.find(';', start);
+            int secondeStop = stoi(ligne.substr(start, end-start));
+
+            Date dateStart;
+            dateStart.annee = anneeStart;
+            dateStart.mois = moisStart;
+            dateStart.jour = jourStart;
+            dateStart.heure = heureStart;
+            dateStart.minute = minuteStart;
+            dateStart.seconde = secondeStart;
+
+            Date dateStop;
+            dateStop.annee = anneeStop;
+            dateStop.mois = moisStop;
+            dateStop.jour = jourStop;
+            dateStop.heure = heureStop;
+            dateStop.minute = minuteStop;
+            dateStop.seconde = secondeStop;
+
+            Purificateur pur(purificateurID, latitude, longitude, dateStart, dateStop);
+            listePurificateur.push_back(pur);
         }
+        // for (vector<Purificateur>::iterator it = listePurificateur.begin(); it != listePurificateur.end(); ++it) {
+        //     cout << "PurificateurID:" << it->getPurificateurId() << " Latitude:" << it->getLatitude() << " Longitude:" << it->getLongitude() << " DateDebut:" << it->getDebut().jour << " DateFin:" << it->getFin().jour << endl;
+        // }
+    }
+
+    ifstream rfFluxParticuliers;
+    rfFluxParticuliers.open(fileParticuliers);
+    if ((rfFluxParticuliers.rdstate() & ifstream::failbit) != 0)
+    {
+        cerr << "Erreur : le fichier users.csv ne peut être ouvert, vérifiez sa validité" << endl;
+    } else
+    {
+        string ligne;
+        while (getline(rfFluxParticuliers, ligne))
+        {
+            int start;
+            int end;
+            
+            end = ligne.find(';');
+            string utilisateurID = ligne.substr(0, end);
+
+            start = end+1;
+            end = ligne.find(';', start);
+            string capteurID = ligne.substr(start, end-start);
+
+            Utilisateur util(utilisateurID, capteurID);
+            listeUtilisateur.push_back(util);
+        }
+        // for (vector<Utilisateur>::iterator it = listeUtilisateur.begin(); it != listeUtilisateur.end(); ++it) {
+        //     cout << "UtilisateurID:" << it->getUtilisateurID() << " CapteurID:" << it->getCapteurID() << endl;
+        // }
     }
 
     return 0;

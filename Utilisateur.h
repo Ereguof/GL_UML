@@ -37,16 +37,18 @@ public:
     //
     // Contrat :
     //
+
+    const string & getUtilisateurID() const;
+    const string & getCapteurID() const;
 //------------------------------------------------- Surcharge d'opérateurs
     Utilisateur & operator = ( const Utilisateur & unUtilisateur );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    const string & getUtilisateurId() const;
 
 //-------------------------------------------- Constructeurs - destructeur
-    Utilisateur ( const Utilisateur & unUtilisateur );
+    // Utilisateur ( const Utilisateur & unUtilisateur );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
@@ -58,7 +60,7 @@ public:
     // Contrat :
     //
 
-    Utilisateur (string Id);
+    Utilisateur (string utilisateurID, string capteurID);
 
 
     virtual ~Utilisateur ( );
@@ -71,7 +73,8 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-  string UtilisateurId;
+  string utilisateurID;
+  string capteurID;
 //----------------------------------------------------- Attributs protégés
 
 };

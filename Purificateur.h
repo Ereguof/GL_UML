@@ -1,12 +1,12 @@
 /*************************************************************************
-                           Xxx  -  description
+                           Purificateur  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
+//---------- Interface de la classe <Purificateur> (fichier Purificateur.h) ----------------
 #if ! defined ( Purificateur_H )
 #define Purificateur_H
 #include <string.h>
@@ -21,7 +21,7 @@ using namespace std;
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Xxx>
+// Rôle de la classe <Purificateur>
 //
 //
 //------------------------------------------------------------------------
@@ -32,13 +32,13 @@ class Purificateur
 
 public:
 //----------------------------------------------------- Méthodes publiques
-   string getPurificateurId() const;
-   double getLongitude() const;
-   double getLattitude() const;
-   const string & getDescription() const;
-
+    string getPurificateurId() const;
+    double getLongitude() const;
+    double getLatitude() const;
+    const Date & getDebut() const;
+    const Date & getFin() const;
 //------------------------------------------------- Surcharge d'opérateurs
-    Purificateur & operator = ( const Purificateur & unXxx );
+    Purificateur & operator = ( const Purificateur & unPurificateur );
     // Mode d'emploi :
     //
     // Contrat :
@@ -46,18 +46,18 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Purificateur ( const Purificateur & unXxx );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
+    // Purificateur ( const Purificateur & unPurificateur );
+    // // Mode d'emploi (constructeur de copie) :
+    // //
+    // // Contrat :
+    // //
 
     Purificateur ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
-    Purificateur(string purificateurId_,  double longitude_, double lattitude_, Date debut_, Date fin_);
+    Purificateur(string purificateurId_,  double longitude_, double latitude_, Date debut_, Date fin_);
     virtual ~Purificateur ( );
     // Mode d'emploi :
     //
@@ -72,7 +72,7 @@ private:
 //----------------------------------------------------- Attributs protégés
   string purificateurId;
   double longitude;
-  double lattitude;
+  double latitude;
   Date debut;
   Date fin;
 
@@ -83,7 +83,7 @@ private:
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <Xxx>
+//-------------------------------- Autres définitions dépendantes de <Purificateur>
 
-#endif // XXX_H
+#endif // Purificateur_H
 
