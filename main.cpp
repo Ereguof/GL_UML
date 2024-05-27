@@ -13,13 +13,14 @@ using namespace std;
 #include "Capteur.h"
 #include "Attribut.h"
 #include "Purificateur.h"
+#include "Particulier.h"
 
 
 vector < Attribut > listeAttribut;
 vector < Capteur > listeCapteur;
 vector < Mesure > listeMesure;
 vector < Fournisseur > listeFournisseur;
-vector < Utilisateur > listeUtilisateur;
+vector < Particulier > listeParticulier;
 vector < Purificateur > listePurificateur;
 
 
@@ -30,7 +31,7 @@ int lireDataset(string nomDossier)
     string fileMesure = nomDossier + "/measurements.csv";
     string fileFournisseur = nomDossier + "/providers.csv";
     string filePurificateur = nomDossier + "/cleaners.csv";
-    string fileParticuliers = nomDossier + "/users.csv";
+    string fileParticulier = nomDossier + "/users.csv";
     string fileBannis = nomDossier + "/bannis.csv";
 
     ifstream rFluxAttribut;
@@ -272,7 +273,7 @@ int lireDataset(string nomDossier)
     }
 
     ifstream rfFluxParticuliers;
-    rfFluxParticuliers.open(fileParticuliers);
+    rfFluxParticuliers.open(fileParticulier);
     if ((rfFluxParticuliers.rdstate() & ifstream::failbit) != 0)
     {
         cerr << "Erreur : le fichier users.csv ne peut être ouvert, vérifiez sa validité" << endl;
@@ -291,7 +292,7 @@ int lireDataset(string nomDossier)
             end = ligne.find(';', start);
             string capteurID = ligne.substr(start, end-start);
 
-            bool fiable = true;
+            bool fiabilite = true;
             ifstream rfFluxBannis;
             rfFluxBannis.open(fileBannis);
             if ((rfFluxBannis.rdstate() & ifstream::failbit) != 0)
@@ -306,13 +307,13 @@ int lireDataset(string nomDossier)
                     string testUtilisateurID = ligne.substr(0, end);
                     if (testUtilisateurID == utilisateurID)
                     {
-                        fiable = false;
+                        fiabilite = false;
                     }
                 }
             }
 
-            Utilisateur util(utilisateurID, capteurID, fiable);
-            listeUtilisateur.push_back(util);
+            Particulier part(utilisateurID, capteurID, fiabilite);
+            listeParticulier.push_back(part);
         }
     }
 

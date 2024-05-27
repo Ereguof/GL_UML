@@ -44,7 +44,7 @@ int Particulier::getNbPoints() const
     return nbPoints;
 }
 
-int Particulier::getFiabilite() const
+bool Particulier::getFiabilite() const
 {
     return fiabilite;
 }
@@ -53,21 +53,22 @@ void Particulier::setCapteurID(const string& newCapteurID){
   capteurID = newCapteurID;
 }
 //-------------------------------------------- Constructeurs - destructeur
-Particulier::Particulier ( const Particulier & unParticulier )
+// Particulier::Particulier ( const Particulier & unParticulier )
+// // Algorithme :
+// //
+// {
+// #ifdef MAP
+//     cout << "Appel au constructeur de copie de <Particulier>" << endl;
+// #endif
+// } //----- Fin de Particulier (constructeur de copie)
+
+
+Particulier::Particulier ( string userID_ , string capteurID_, bool fiabilite_): Utilisateur(userID_)
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Particulier>" << endl;
-#endif
-} //----- Fin de Particulier (constructeur de copie)
-
-
-Particulier::Particulier ( string userID_ , string capteurID_): Utilisateur(userID_)
-// Algorithme :
-//
-{
-  capteurID = capteurID_;
+    capteurID = capteurID_;
+    this->fiabilite = fiabilite_;
 #ifdef MAP
     cout << "Appel au constructeur de <Particulier>" << endl;
 #endif

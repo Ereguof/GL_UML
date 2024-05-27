@@ -39,8 +39,6 @@ public:
     //
 
     const string & getUtilisateurID() const;
-    const string & getCapteurID() const;
-    bool getFiable() const;
 //------------------------------------------------- Surcharge d'opérateurs
     Utilisateur & operator = ( const Utilisateur & unUtilisateur );
     // Mode d'emploi :
@@ -61,7 +59,7 @@ public:
     // Contrat :
     //
 
-    Utilisateur (string utilisateurID, string capteurID, bool fiable);
+    Utilisateur (string utilisateurID);
 
 
     virtual ~Utilisateur ( );
@@ -75,8 +73,6 @@ public:
 protected:
 //----------------------------------------------------- Méthodes protégées
   string utilisateurID;
-  string capteurID;
-  bool fiable;
 //----------------------------------------------------- Attributs protégés
 
 };

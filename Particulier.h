@@ -36,20 +36,20 @@ public:
     //
     string const & getCapteurID() const;
     int getNbPoints() const;
-    int getFiabilite() const;
+    bool getFiabilite() const;
     void setCapteurID(const string& newCapteurID);
 
 
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
-    Particulier ( const Particulier & unParticulier );
+    // Particulier ( const Particulier & unParticulier );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Particulier ( string userID_, string capteurID_ = NULL);
+    Particulier ( string userID_, string capteurID_, bool fiabilite_);
     // Mode d'emploi :
     //
     // Contrat :
@@ -69,7 +69,7 @@ private:
 //----------------------------------------------------- Attributs protégés
 string capteurID;
 int nbPoints = 0;
-int fiabilite = 1;
+bool fiabilite;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Particulier>
