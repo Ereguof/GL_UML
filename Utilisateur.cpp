@@ -45,6 +45,11 @@ const string & Utilisateur::getCapteurID() const
     return capteurID;
 }
 
+bool Utilisateur::getFiable() const
+{
+    return fiable;
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 // Utilisateur::Utilisateur ( const Utilisateur & unUtilisateur )
 // // Algorithme :
@@ -75,12 +80,13 @@ Utilisateur::~Utilisateur ( )
 #endif
 } //----- Fin de ~Utilisateur
 
-Utilisateur::Utilisateur (string utilisateurID_, string capteurID_)
+Utilisateur::Utilisateur (string utilisateurID_, string capteurID_, bool fiable_)
 // Algorithme :
 //
 {
     this->utilisateurID = utilisateurID_;
     this->capteurID = capteurID_;
+    this->fiable = fiable_;
 #ifdef MAP
     cout << "Appel au constructeur de <Utilisateur>" << endl;
 #endif

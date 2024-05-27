@@ -22,6 +22,7 @@ vector < Fournisseur > listeFournisseur;
 vector < Utilisateur > listeUtilisateur;
 vector < Purificateur > listePurificateur;
 
+
 int lireDataset(string nomDossier)
 {
     string fileAttribut = nomDossier + "/attributes.csv";
@@ -60,9 +61,6 @@ int lireDataset(string nomDossier)
             Attribut att(attributID, unit, description);
             listeAttribut.push_back(att);
         }
-        // for (vector<Attribut>::iterator it = listeAttribut.begin(); it != listeAttribut.end(); ++it) {
-        //     cout << "AttributID:" << it->getAttributId() << " Unit:" << it->getUnite() << " Description:" << it->getDescription() << endl;
-        // }
     }
 
     ifstream rfFluxCapteur;
@@ -91,14 +89,7 @@ int lireDataset(string nomDossier)
 
             Capteur cap(capteurID, latitude, longitude);
             listeCapteur.push_back(cap);
-
-            // Capteur premierElement = listeCapteur.front();
-            // cout << "CapteurID:" << premierElement.getCapteurID() << " Latitude:" << premierElement.getLatitude() << " Longitude:" << premierElement.getLongitude() << endl;
         }
-
-        // for (vector<Capteur>::iterator it = listeCapteur.begin(); it != listeCapteur.end(); ++it) {
-        //     cout << "CapteurID:" << it->getCapteurID() << " Latitude:" << it->getLatitude() << " Longitude:" << it->getLongitude() << endl;
-        // }
     }
 
     ifstream rfFluxMesure;
@@ -160,9 +151,6 @@ int lireDataset(string nomDossier)
             Mesure mes(date, capteurID, attributID, valeur);
             listeMesure.push_back(mes);
         }
-        // for (vector<Mesure>::iterator it = listeMesure.begin(); it != listeMesure.end(); ++it) {
-        //     cout << "date:" << it->getDate().jour << " CapteurID:" << it->getCapteurID() << " AttributID:" << it->getAttributID() << " Valeur:" << it->getValeur() << endl;
-        // }
     }
 
     ifstream rfFluxFournisseur;
@@ -188,9 +176,6 @@ int lireDataset(string nomDossier)
             Fournisseur four(fournisseurID, purificateurID);
             listeFournisseur.push_back(four);
         }
-        // for (vector<Fournisseur>::iterator it = listeFournisseur.begin(); it != listeFournisseur.end(); ++it) {
-        //     cout << "FournisseurID:" << it->getFournisseurID() << " PurificateurID:" << it->getPurificateurID() << endl;
-        // }
     }
 
     ifstream rfFluxPurificateur;
@@ -284,9 +269,6 @@ int lireDataset(string nomDossier)
             Purificateur pur(purificateurID, latitude, longitude, dateStart, dateStop);
             listePurificateur.push_back(pur);
         }
-        // for (vector<Purificateur>::iterator it = listePurificateur.begin(); it != listePurificateur.end(); ++it) {
-        //     cout << "PurificateurID:" << it->getPurificateurId() << " Latitude:" << it->getLatitude() << " Longitude:" << it->getLongitude() << " DateDebut:" << it->getDebut().jour << " DateFin:" << it->getFin().jour << endl;
-        // }
     }
 
     ifstream rfFluxParticuliers;
@@ -309,12 +291,29 @@ int lireDataset(string nomDossier)
             end = ligne.find(';', start);
             string capteurID = ligne.substr(start, end-start);
 
-            Utilisateur util(utilisateurID, capteurID);
+            bool fiable = true;
+            ifstream rfFluxBannis;
+            rfFluxBannis.open(fileBannis);
+            if ((rfFluxBannis.rdstate() & ifstream::failbit) != 0)
+            {
+                cerr << "Erreur : le fichier bannis.csv ne peut être ouvert, vérifiez sa validité" << endl;
+            } else
+            {
+                string ligneBannis;
+                while (getline(rfFluxBannis, ligneBannis))
+                {
+                    int end = ligne.find(';');
+                    string testUtilisateurID = ligne.substr(0, end);
+                    if (testUtilisateurID == utilisateurID)
+                    {
+                        fiable = false;
+                    }
+                }
+            }
+
+            Utilisateur util(utilisateurID, capteurID, fiable);
             listeUtilisateur.push_back(util);
         }
-        // for (vector<Utilisateur>::iterator it = listeUtilisateur.begin(); it != listeUtilisateur.end(); ++it) {
-        //     cout << "UtilisateurID:" << it->getUtilisateurID() << " CapteurID:" << it->getCapteurID() << endl;
-        // }
     }
 
     return 0;
