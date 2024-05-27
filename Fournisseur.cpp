@@ -31,18 +31,29 @@ bool Fournisseur::passerEnModePrivilegie (string motDePasse) const
 {
     return true;
 }
-//-------------------------------------------- Constructeurs - destructeur
-Fournisseur::Fournisseur ( const Fournisseur & unFournisseur )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Fournisseur>" << endl;
-#endif
-} //----- Fin de Fournisseur (constructeur de copie)
 
-Fournisseur::Fournisseur (string purificateurID_)
+string const & Fournisseur::getFournisseurID() const
 {
+    return fournisseurID;
+}
+
+string const & Fournisseur::getPurificateurID() const
+{
+    return purificateurID;
+}
+//-------------------------------------------- Constructeurs - destructeur
+// Fournisseur::Fournisseur ( const Fournisseur & unFournisseur )
+// // Algorithme :
+// //
+// {
+// #ifdef MAP
+//     cout << "Appel au constructeur de copie de <Fournisseur>" << endl;
+// #endif
+// } //----- Fin de Fournisseur (constructeur de copie)
+
+Fournisseur::Fournisseur (string fournisseurID_, string purificateurID_)
+{
+    this->fournisseurID = fournisseurID_;
     this->purificateurID = purificateurID_;
 }
 

@@ -161,8 +161,36 @@ int lireDataset(string nomDossier)
             Mesure mes(date, capteurID, attributID, valeur);
             listeMesure.push_back(mes);
         }
-        for (vector<Mesure>::iterator it = listeMesure.begin(); it != listeMesure.end(); ++it) {
-            cout << "date:" << it->getDate().jour << " CapteurID:" << it->getCapteurID() << " AttributID:" << it->getAttributID() << " Valeur:" << it->getValeur() << endl;
+        // for (vector<Mesure>::iterator it = listeMesure.begin(); it != listeMesure.end(); ++it) {
+        //     cout << "date:" << it->getDate().jour << " CapteurID:" << it->getCapteurID() << " AttributID:" << it->getAttributID() << " Valeur:" << it->getValeur() << endl;
+        // }
+    }
+
+    ifstream rfFluxFournisseur;
+    rfFluxFournisseur.open(fileFournisseur);
+    if ((rfFluxFournisseur.rdstate() & ifstream::failbit) != 0)
+    {
+        cerr << "Erreur : le fichier providers.csv ne peut être ouvert, vérifiez sa validité" << endl;
+    } else
+    {
+        string ligne;
+        while (getline(rfFluxFournisseur, ligne))
+        {
+            int start;
+            int end;
+            
+            end = ligne.find(';');
+            string fournisseurID = ligne.substr(0, end);
+
+            start = end+1;
+            end = ligne.find(';', start);
+            string purificateurID = ligne.substr(start, end-start);
+
+            Fournisseur four(fournisseurID, purificateurID);
+            listeFournisseur.push_back(four);
+        }
+        for (vector<Fournisseur>::iterator it = listeFournisseur.begin(); it != listeFournisseur.end(); ++it) {
+            cout << "FournisseurID:" << it->getFournisseurID() << " PurificateurID:" << it->getPurificateurID() << endl;
         }
     }
 

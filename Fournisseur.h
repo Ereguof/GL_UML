@@ -35,13 +35,16 @@ class Fournisseur : public Utilisateur
         bool passerEnModePrivilegie (string motDePasse) const;
         // Mode d'emploi :
 
+        string const & getFournisseurID() const;
+
+        string const & getPurificateurID() const;
 
     //-------------------------------------------- Constructeurs - destructeur
-        Fournisseur ( const Fournisseur & unFournisseur );
-        // Mode d'emploi (constructeur de copie) :
-        //
-        // Contrat :
-        //
+        // Fournisseur ( const Fournisseur & unFournisseur );
+        // // Mode d'emploi (constructeur de copie) :
+        // //
+        // // Contrat :
+        // //
 
         Fournisseur ( );
         // Mode d'emploi :
@@ -49,7 +52,7 @@ class Fournisseur : public Utilisateur
         // Contrat :
         //
 
-        Fournisseur(string purificateurID_);
+        Fournisseur(string fournisseurID_, string purificateurID_);
         // Mode d'emploi :
         //
         // Contrat :
@@ -67,6 +70,7 @@ class Fournisseur : public Utilisateur
     //----------------------------------------------------- Méthodes protégées
 
     //----------------------------------------------------- Fournisseurs protégés
+    string fournisseurID;
     string purificateurID;
 };
 
