@@ -11,6 +11,8 @@
 #define Service_H
 using namespace std;
 #include <vector>
+#include <fstream>
+#include <iostream>
 #include "Utilisateur.h"
 #include "Particulier.h"
 #include "Capteur.h"
@@ -18,6 +20,11 @@ using namespace std;
 #include "Mesure.h"
 #include "Purificateur.h"
 #include "Fournisseur.h"
+#include <cmath>
+#include <algorithm>
+#include <map>
+#include <iterator>
+#include <numeric>
 #include <iterator>
 
 
@@ -45,7 +52,7 @@ public:
     // Contrat :
     //
 
-    int constulterNombrePoints (int Id);
+    int constulterNombrePoints (string Id);
 
     int qualiteAirZoneCirculairePeriode(double latitude, double longitude, Date debut, Date fin, int rayon);
 
@@ -57,7 +64,7 @@ public:
 
     int analyserQualiteDonnees(string CapteurId);
 
-    int lireDataSet();
+    int lireDataSet(string nomDossier);
 
     int moyenneIndiceAtmo(string CapteurId, Date debut, Date fin);
 //------------------------------------------------- Surcharge d'opérateurs

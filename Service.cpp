@@ -38,9 +38,9 @@ int Service::qualiteAirZoneCirculaireMoment(double latitude, double longitude, D
 }
 
 
-int Service::constulterNombrePoints(int Id){
+int Service::constulterNombrePoints(string Id){
     cout << "La fonction constulterNombrePoints n'a pas été implémentéé, elle retourne juste l'id en entrée(nbpoint)" << endl;
-    return Id;
+    return 0;
 }
 
 int Service::qualiteAirZoneCirculairePeriode(double latitude, double longitude, Date debut, Date fin, int rayon){
@@ -88,7 +88,7 @@ int calculeIndiceAtmo(Mesure mesureO2, Mesure mesureSO2, Mesure mesureNO2, Mesur
       int valeur3 = mesureNO2.getValeur();
       int valeur4 = mesurePM10.getValeur();
 
-    
+
       vector<int> O3Thresholds = {29, 54, 79, 104, 129, 149, 179, 209, 239};
       vector<int> SO2Thresholds = {39, 79, 119, 159, 199, 249, 299, 399, 499};
       vector<int> NO2Thresholds = {29, 54, 84, 109, 134, 164, 199, 274, 399};
@@ -113,7 +113,7 @@ int calculeIndiceAtmo(Mesure mesureO2, Mesure mesureSO2, Mesure mesureNO2, Mesur
 int Service:: moyenneIndiceAtmo(string CapteurId, Date debut, Date fin){
     int longueur = 0;
     int somme = 0;
-    for (vector<Mesure>::iterator it = listeMesure.begin(); it != listeMesure.end(); ++it) {
+    for (vector<Mesure>::iterator it = listeMesure.begin(); it != listeMesure.end(); it += 4) {
 
       Mesure mesureEnCours = *it;
       // une fois qu'on a la mesure, on regarde si c'est le bon capteur et une date valide
@@ -140,27 +140,68 @@ int Service:: moyenneIndiceAtmo(string CapteurId, Date debut, Date fin){
                             longueur++;
 
                         }
+
                }
           }
      }
    }
-
+    //cout << "service moyenne" << endl;
     if (longueur != 0)
         return somme/longueur;
+
     return -1;
 
 }
 
+
+std::pair<std::vector<int>::iterator, int> insertSorted(std::vector<int>& vec, int value, int length) {
+    // Find the insertion point using lower_bound
+    auto it = std::lower_bound(vec.begin(), vec.end(), value);
+
+    // Calculate the index of the insertion point
+    int index = std::distance(vec.begin(), it);
+    cout << "size" <<vec.size();
+    if (index > length){
+      index = length;
+    }
+    cout << "value" << value << endl;
+    // Insert the value at the correct position
+    vec.insert(it, value);
+
+    // Return the iterator to the insertion point and the index
+    return {it, index};
+}
+
 vector<string> Service :: identifierZoneQualiteSimilaire(string CapteurId, Date debut, Date fin){
-    cout << "Il faut encore implémenter cette fonction(zone qualite)" << endl;
+
 
     vector<int> listSimilarity;
-    vector<string> listeRanking;
-    int moyenne_capteur_courant;
+    vector<string> listRanking;
+    int indiceAtmoCapteur = moyenneIndiceAtmo(CapteurId, debut, fin);
+    int moyenneCapteurCourant ;
+    int length = 0;
+    for (vector<Capteur>::iterator it = listeCapteur.begin(); it != listeCapteur.end(); ++it){
 
-    std::vector <string> stringlist = {"Hello"};
+        Capteur capteurCourant= *it;
 
-    return stringlist;
+        string capteurCourantId = capteurCourant.getCapteurID();
+
+        if (capteurCourantId != CapteurId){
+          int moyenneIndiceAtmoCourant = moyenneIndiceAtmo(capteurCourantId, debut, fin);
+          int similarity = abs(moyenneIndiceAtmoCourant - moyenneCapteurCourant);
+          listSimilarity.push_back(similarity);
+          auto result = insertSorted(listSimilarity, similarity, length);
+
+          listRanking.insert(listRanking.begin() + result.second, capteurCourantId);
+
+          length++;
+
+        }
+    }
+
+
+
+    return listRanking;
 }
 
 int Service::analyserQualiteDonnees(string CapteurId){
@@ -168,9 +209,303 @@ int Service::analyserQualiteDonnees(string CapteurId){
     return 0;
 }
 
-int Service::lireDataSet(){
+int Service::lireDataSet(string nomDossier){
 
   cout << "Il faut encore implémenter cette fonction(recupererdonnees)"<<endl;
+
+
+  string fileAttribut = nomDossier + "/attributes.csv";
+  string fileCapteur = nomDossier + "/sensors.csv";
+  string fileMesure = nomDossier + "/measurements.csv";
+  string fileFournisseur = nomDossier + "/providers.csv";
+  string filePurificateur = nomDossier + "/cleaners.csv";
+  string fileParticulier = nomDossier + "/users.csv";
+  string fileBannis = nomDossier + "/bannis.csv";
+
+  ifstream rFluxAttribut;
+  rFluxAttribut.open(fileAttribut);
+  if ((rFluxAttribut.rdstate() & ifstream::failbit) != 0)
+  {
+      cerr << "Erreur : le fichier attributes.csv ne peut être ouvert, vérifiez sa validité" << endl;
+  } else
+  {
+      string ligne;
+      getline(rFluxAttribut, ligne);
+      while (getline(rFluxAttribut, ligne))
+      {
+          int start;
+          int end;
+
+          end = ligne.find(';');
+          string attributID = ligne.substr(0, end);
+
+          start = end+1;
+          end = ligne.find(';', start);
+          string unit = ligne.substr(start, end-start);
+
+          start = end+1;
+          end = ligne.find(';', start);
+          string description = ligne.substr(start, end-start);
+
+          Attribut att(attributID, unit, description);
+          listeAttribut.push_back(att);
+      }
+  }
+
+  ifstream rfFluxCapteur;
+  rfFluxCapteur.open(fileCapteur);
+  if ((rfFluxCapteur.rdstate() & ifstream::failbit) != 0)
+  {
+      cerr << "Erreur : le fichier sensors.csv ne peut être ouvert, vérifiez sa validité" << endl;
+  } else
+  {
+      string ligne;
+      while (getline(rfFluxCapteur, ligne))
+      {
+          int start;
+          int end;
+
+          end = ligne.find(';');
+          string capteurID = ligne.substr(0, end);
+
+          start = end+1;
+          end = ligne.find(';', start);
+          double latitude = stod(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find(';', start);
+          double longitude = stod(ligne.substr(start, end-start));
+
+          Capteur cap(capteurID, latitude, longitude);
+          listeCapteur.push_back(cap);
+      }
+  }
+
+  ifstream rfFluxMesure;
+  rfFluxMesure.open(fileMesure);
+  if ((rfFluxMesure.rdstate() & ifstream::failbit) != 0)
+  {
+      cerr << "Erreur : le fichier measurements.csv ne peut être ouvert, vérifiez sa validité" << endl;
+  } else
+  {
+      string ligne;
+      while (getline(rfFluxMesure, ligne))
+      {
+          int start;
+          int end;
+
+          end = ligne.find('-');
+          int annee = stoi(ligne.substr(0, end));
+
+          start = end+1;
+          end = ligne.find('-', start);
+          int mois = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find(' ', start);
+          int jour = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find(':', start);
+          int heure = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find(':', start);
+          int minute = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find(';', start);
+          int seconde = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find(';', start);
+          string capteurID = ligne.substr(start, end-start);
+
+          start = end+1;
+          end = ligne.find(';', start);
+          string attributID = ligne.substr(start, end-start);
+
+          start = end+1;
+          end = ligne.find(';', start);
+          double valeur = stod(ligne.substr(start, end-start));
+
+          Date date;
+          date.annee = annee;
+          date.mois = mois;
+          date.jour = jour;
+          date.heure = heure;
+          date.minute = minute;
+          date.seconde = seconde;
+
+          Mesure mes(date, capteurID, attributID, valeur);
+          listeMesure.push_back(mes);
+      }
+  }
+
+  ifstream rfFluxFournisseur;
+  rfFluxFournisseur.open(fileFournisseur);
+  if ((rfFluxFournisseur.rdstate() & ifstream::failbit) != 0)
+  {
+      cerr << "Erreur : le fichier providers.csv ne peut être ouvert, vérifiez sa validité" << endl;
+  } else
+  {
+      string ligne;
+      while (getline(rfFluxFournisseur, ligne))
+      {
+          int start;
+          int end;
+
+          end = ligne.find(';');
+          string fournisseurID = ligne.substr(0, end);
+
+          start = end+1;
+          end = ligne.find(';', start);
+          string purificateurID = ligne.substr(start, end-start);
+
+          Fournisseur four(fournisseurID, purificateurID);
+          listeFournisseur.push_back(four);
+      }
+  }
+
+  ifstream rfFluxPurificateur;
+  rfFluxPurificateur.open(filePurificateur);
+  if ((rfFluxPurificateur.rdstate() & ifstream::failbit) != 0)
+  {
+      cerr << "Erreur : le fichier cleaners.csv ne peut être ouvert, vérifiez sa validité" << endl;
+  } else
+  {
+      string ligne;
+      while (getline(rfFluxPurificateur, ligne))
+      {
+          int start;
+          int end;
+
+          end = ligne.find(';');
+          string purificateurID = ligne.substr(0, end);
+
+          start = end+1;
+          end = ligne.find(';', start);
+          double latitude = stod(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find(';', start);
+          double longitude = stod(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find('-',start);
+          int anneeStart = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find('-', start);
+          int moisStart = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find(' ', start);
+          int jourStart = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find(':', start);
+          int heureStart = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find(':', start);
+          int minuteStart = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find(';', start);
+          int secondeStart = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find('-',start);
+          int anneeStop = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find('-', start);
+          int moisStop = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find(' ', start);
+          int jourStop = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find(':', start);
+          int heureStop = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find(':', start);
+          int minuteStop = stoi(ligne.substr(start, end-start));
+
+          start = end+1;
+          end = ligne.find(';', start);
+          int secondeStop = stoi(ligne.substr(start, end-start));
+
+          Date dateStart;
+          dateStart.annee = anneeStart;
+          dateStart.mois = moisStart;
+          dateStart.jour = jourStart;
+          dateStart.heure = heureStart;
+          dateStart.minute = minuteStart;
+          dateStart.seconde = secondeStart;
+
+          Date dateStop;
+          dateStop.annee = anneeStop;
+          dateStop.mois = moisStop;
+          dateStop.jour = jourStop;
+          dateStop.heure = heureStop;
+          dateStop.minute = minuteStop;
+          dateStop.seconde = secondeStop;
+
+          Purificateur pur(purificateurID, latitude, longitude, dateStart, dateStop);
+          listePurificateur.push_back(pur);
+      }
+  }
+
+  ifstream rfFluxParticuliers;
+  rfFluxParticuliers.open(fileParticulier);
+  if ((rfFluxParticuliers.rdstate() & ifstream::failbit) != 0)
+  {
+      cerr << "Erreur : le fichier users.csv ne peut être ouvert, vérifiez sa validité" << endl;
+  } else
+  {
+      string ligne;
+      while (getline(rfFluxParticuliers, ligne))
+      {
+          int start;
+          int end;
+
+          end = ligne.find(';');
+          string utilisateurID = ligne.substr(0, end);
+
+          start = end+1;
+          end = ligne.find(';', start);
+          string capteurID = ligne.substr(start, end-start);
+
+          bool fiabilite = true;
+          ifstream rfFluxBannis;
+          rfFluxBannis.open(fileBannis);
+          if ((rfFluxBannis.rdstate() & ifstream::failbit) != 0)
+          {
+              cerr << "Erreur : le fichier bannis.csv ne peut être ouvert, vérifiez sa validité" << endl;
+          } else
+          {
+              string ligneBannis;
+              while (getline(rfFluxBannis, ligneBannis))
+              {
+                  int end = ligne.find(';');
+                  string testUtilisateurID = ligne.substr(0, end);
+                  if (testUtilisateurID == utilisateurID)
+                  {
+                      fiabilite = false;
+                  }
+              }
+          }
+
+          Particulier part(utilisateurID, capteurID, fiabilite);
+          listeParticulier.push_back(part);
+      }
+  }
+
+  return 0;
   return 0;
 }
 //------------------------------------------------- Surcharge d'opérateurs
