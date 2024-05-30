@@ -1,13 +1,22 @@
 MAP = -DMAP
 FLAGS = -ansi -pedantic -Wall -std=c++11
-OBJ = main.o Attribut.o Capteur.o Fournisseur.o Mesure.o Particulier.o Utilisateur.o Purificateur.o Service.o
-TARGET = main
+OBJ_MAIN = main.o Attribut.o Capteur.o Fournisseur.o Mesure.o Particulier.o Utilisateur.o Purificateur.o Service.o
+OBJ_TESTS = mainTestsUnitaires.o Attribut.o Capteur.o Fournisseur.o Mesure.o Particulier.o Utilisateur.o Purificateur.o Service.o
+TARGET = main mainTestsUnitaires
 
-main: $(OBJ)
-		g++ -o main $(OBJ) $(FLAGS) $(MAP)
+all: $(TARGET)
+
+main: $(OBJ_MAIN)
+		g++ -o main $(OBJ_MAIN) $(FLAGS) $(MAP)
+
+mainTestsUnitaires: $(OBJ_TESTS)
+		g++ -o mainTestsUnitaires $(OBJ_TESTS) $(FLAGS) $(MAP)
 
 main.o: main.cpp
 		g++ -c main.cpp $(FLAGS)
+
+mainTestsUnitaires.o: mainTestsUnitaires.cpp
+		g++ -c mainTestsUnitaires.cpp $(FLAGS)
 
 Attribut.o: Attribut.cpp
 		g++ -c Attribut.cpp $(FLAGS)
@@ -34,4 +43,4 @@ Service.o: Service.cpp
 		g++ -c Service.cpp $(FLAGS)
 
 clean:
-		rm -f $(OBJ) $(TARGET)
+		rm -f $(OBJ_TESTS) $(OBJ_MAIN) $(TARGET)

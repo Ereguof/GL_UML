@@ -1,12 +1,12 @@
 /*************************************************************************
-                           Xxx  -  description
+                           Purificateur  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
+//---------- Réalisation de la classe <Purificateur> (fichier Purificateur.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -23,11 +23,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -71,14 +66,14 @@ Purificateur::Purificateur (string purificateurId_,  double latitude_, double lo
 }
 
 
-Purificateur::Purificateur ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de <Purificateur>" << endl;
-#endif
-} //----- Fin de Purificateur
+// Purificateur::Purificateur ( )
+// // Algorithme :
+// //
+// {
+// #ifdef MAP
+//     cout << "Appel au constructeur de <Purificateur>" << endl;
+// #endif
+// } //----- Fin de Purificateur
 
 
 Purificateur::~Purificateur ( )

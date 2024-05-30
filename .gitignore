@@ -4,3 +4,13 @@ Attribut.o
 test
 main
 settings.json
+Capteur.o
+Fournisseur.o
+main.o
+Mesure.o
+Particulier.o
+Purificateur.o
+Service.o
+Utilisateur.o
+prog
+mainTestsUnitaires

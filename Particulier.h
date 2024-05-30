@@ -36,6 +36,7 @@ public:
     //
     string const & getCapteurID() const;
     int getNbPoints() const;
+    int setNbPoints(int nbPoints_) ;
     bool getFiabilite() const;
     void setCapteurID(const string& newCapteurID);
 
@@ -49,7 +50,7 @@ public:
     // Contrat :
     //
 
-    Particulier ( string userID_, string capteurID_, bool fiabilite_);
+    Particulier ( string userID_, string capteurID_, bool fiabilite_, int nbPoints_ );
     // Mode d'emploi :
     //
     // Contrat :
@@ -68,7 +69,7 @@ private:
 
 //----------------------------------------------------- Attributs protégés
 string capteurID;
-int nbPoints = 0;
+int nbPoints;
 bool fiabilite;
 };
 

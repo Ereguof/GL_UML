@@ -40,7 +40,7 @@ public:
 
     const string & getUtilisateurID() const;
 //------------------------------------------------- Surcharge d'opérateurs
-    Utilisateur & operator = ( const Utilisateur & unUtilisateur );
+    // Utilisateur & operator = ( const Utilisateur & unUtilisateur );
     // Mode d'emploi :
     //
     // Contrat :

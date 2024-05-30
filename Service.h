@@ -67,8 +67,23 @@ public:
     int lireDataSet(string nomDossier);
 
     int moyenneIndiceAtmo(string CapteurId, Date debut, Date fin);
+
+    vector<Particulier> getListeParticulier();
+    vector<Capteur> getListeCapteur();
+    vector<Attribut> getListeAttribut();
+    vector<Mesure> getListeMesure();
+    vector<Purificateur> getListePurificateur();
+    vector<Fournisseur> getListeFournisseur();
+
+    void setListeParticulier(vector<Particulier> listeParticulier);
+    void setListeCapteur(vector<Capteur> listeCapteur);
+    void setListeAttribut(vector<Attribut> listeAttribut);
+    void setListeMesure(vector<Mesure> listeMesure);
+    // void setListePurificateur(vector<Purificateur> listePurificateur);
+    void setListeFournisseur(vector<Fournisseur> listeFournisseur);
+
 //------------------------------------------------- Surcharge d'opérateurs
-    Service & operator = ( const Service & unService );
+    // Service & operator = ( const Service & unService );
     // Mode d'emploi :
     //
     // Contrat :
@@ -76,7 +91,7 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Service ( const Service & unService );
+    // Service ( const Service & unService );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
@@ -98,12 +113,12 @@ public:
 
 private:
 //----------------------------------------------------- Méthodes protégées
-  std::vector<Particulier> listeParticulier;
-  std::vector<Capteur> listeCapteur;
-  std::vector<Attribut> listeAttribut;
-  std::vector<Mesure> listeMesure;
-  std::vector<Purificateur> listePurificateur;
-  std::vector<Fournisseur> listeFournisseur;
+  vector<Particulier> listeParticulier;
+  vector<Capteur> listeCapteur;
+  vector<Attribut> listeAttribut;
+  vector<Mesure> listeMesure;
+  vector<Purificateur> listePurificateur;
+  vector<Fournisseur> listeFournisseur;
 
 //----------------------------------------------------- Attributs protégés
 

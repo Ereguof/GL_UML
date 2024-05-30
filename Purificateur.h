@@ -38,7 +38,7 @@ public:
     const Date & getDebut() const;
     const Date & getFin() const;
 //------------------------------------------------- Surcharge d'opérateurs
-    Purificateur & operator = ( const Purificateur & unPurificateur );
+    // Purificateur & operator = ( const Purificateur & unPurificateur );
     // Mode d'emploi :
     //
     // Contrat :
@@ -52,7 +52,7 @@ public:
     // // Contrat :
     // //
 
-    Purificateur ( );
+    // Purificateur ( );
     // Mode d'emploi :
     //
     // Contrat :

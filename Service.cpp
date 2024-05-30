@@ -39,8 +39,14 @@ int Service::qualiteAirZoneCirculaireMoment(double latitude, double longitude, D
 
 
 int Service::constulterNombrePoints(string Id){
-    cout << "La fonction constulterNombrePoints n'a pas été implémentéé, elle retourne juste l'id en entrée(nbpoint)" << endl;
-    return 0;
+    int res = 0;
+    for (vector<Particulier>::iterator it = listeParticulier.begin(); it != listeParticulier.end(); ++it) {
+        Particulier particulierCourant = *it;
+        if (particulierCourant.getUtilisateurID() == Id) {
+            res = particulierCourant.getNbPoints();
+        }
+    }
+    return res;
 }
 
 int Service::qualiteAirZoneCirculairePeriode(double latitude, double longitude, Date debut, Date fin, int rayon){
@@ -160,11 +166,11 @@ std::pair<std::vector<int>::iterator, int> insertSorted(std::vector<int>& vec, i
 
     // Calculate the index of the insertion point
     int index = std::distance(vec.begin(), it);
-    cout << "size" <<vec.size();
+    //cout << "size" <<vec.size();
     if (index > length){
       index = length;
     }
-    cout << "value" << value << endl;
+    //cout << "value" << value << endl;
     // Insert the value at the correct position
     vec.insert(it, value);
 
@@ -211,9 +217,6 @@ int Service::analyserQualiteDonnees(string CapteurId){
 
 int Service::lireDataSet(string nomDossier){
 
-  cout << "Il faut encore implémenter cette fonction(recupererdonnees)"<<endl;
-
-
   string fileAttribut = nomDossier + "/attributes.csv";
   string fileCapteur = nomDossier + "/sensors.csv";
   string fileMesure = nomDossier + "/measurements.csv";
@@ -221,6 +224,7 @@ int Service::lireDataSet(string nomDossier){
   string filePurificateur = nomDossier + "/cleaners.csv";
   string fileParticulier = nomDossier + "/users.csv";
   string fileBannis = nomDossier + "/bannis.csv";
+  string filePoints = nomDossier + "/users_points.csv";
 
   ifstream rFluxAttribut;
   rFluxAttribut.open(fileAttribut);
@@ -491,8 +495,8 @@ int Service::lireDataSet(string nomDossier){
               string ligneBannis;
               while (getline(rfFluxBannis, ligneBannis))
               {
-                  int end = ligne.find(';');
-                  string testUtilisateurID = ligne.substr(0, end);
+                  int endBannis = ligneBannis.find(';');
+                  string testUtilisateurID = ligneBannis.substr(0, endBannis);
                   if (testUtilisateurID == utilisateurID)
                   {
                       fiabilite = false;
@@ -500,27 +504,98 @@ int Service::lireDataSet(string nomDossier){
               }
           }
 
-          Particulier part(utilisateurID, capteurID, fiabilite);
-          listeParticulier.push_back(part);
+        int nbPoints = 0;
+        ifstream rfFluxPoints;
+        rfFluxPoints.open(filePoints);
+        if ((rfFluxPoints.rdstate() & ifstream::failbit) != 0)
+        {
+            cerr << "Erreur : le fichier users_points.csv ne peut être ouvert, vérifiez sa validité" << endl;
+        } else
+        {
+            string lignePoints;
+            while (getline(rfFluxPoints, lignePoints))
+            {
+                int endPoints = ligne.find(';');
+                string testUtilisateurID = lignePoints.substr(0, endPoints);
+                if (testUtilisateurID == utilisateurID)
+                {
+                    int startPoints = endPoints+1;
+                    endPoints = lignePoints.find(';', startPoints);
+                    nbPoints = stoi(lignePoints.substr(startPoints, endPoints-startPoints));
+                }
+            }
+        }
+
+        Particulier part(utilisateurID, capteurID, fiabilite, nbPoints);
+        listeParticulier.push_back(part);
       }
   }
 
   return 0;
-  return 0;
 }
+
+vector<Particulier> Service::getListeParticulier(){
+    return listeParticulier;
+}
+
+vector<Capteur> Service::getListeCapteur(){
+    return listeCapteur;
+}
+
+vector<Attribut> Service::getListeAttribut(){
+    return listeAttribut;
+}
+
+vector<Mesure> Service::getListeMesure(){
+    return listeMesure;
+}
+
+vector<Purificateur> Service::getListePurificateur(){
+    return listePurificateur;
+}
+
+vector<Fournisseur> Service::getListeFournisseur(){
+    return listeFournisseur;
+}
+
+void Service::setListeParticulier(vector<Particulier> listeParticulier){
+    this->listeParticulier = listeParticulier;
+}
+
+void Service::setListeCapteur(vector<Capteur> listeCapteur){
+    this->listeCapteur = listeCapteur;
+}
+
+void Service::setListeAttribut(vector<Attribut> listeAttribut){
+    this->listeAttribut = listeAttribut;
+}
+
+void Service::setListeMesure(vector<Mesure> listeMesure){
+    this->listeMesure = listeMesure;
+}
+
+// void Service::setListePurificateur(vector<Purificateur> listePurificateur){
+//     this->listePurificateur = listePurificateur;
+// }
+
+void Service::setListeFournisseur(vector<Fournisseur> listeFournisseur){
+    this->listeFournisseur = listeFournisseur;
+}
+
+
 //------------------------------------------------- Surcharge d'opérateurs
 
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Service::Service ( const Service & unService )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Service>" << endl;
-#endif
-} //----- Fin de Service (constructeur de copie)
+// Service::Service ( const Service & unService )
+// // Algorithme :
+// //
+// {
+// #ifdef MAP
+//     cout << "Appel au constructeur de copie de <Service>" << endl;
+// #endif
+// } //----- Fin de Service (constructeur de copie)
 
 
 Service::Service ( )
