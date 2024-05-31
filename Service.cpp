@@ -242,11 +242,11 @@ std::pair<std::vector<double>::iterator, int> insertSorted(std::vector<double>& 
     return {it, index};
 }
 
-vector<string> Service :: identifierZoneQualiteSimilaire(string CapteurId, Date debut, Date fin){
+vector<Capteur> Service :: identifierZoneQualiteSimilaire(string CapteurId, Date debut, Date fin){
 
 
     vector<double> listSimilarity;
-    vector<string> listRanking;
+    vector<Capteur> listRanking;
     //int indiceAtmoCapteur = moyenneIndiceAtmo(CapteurId, debut, fin);
     double moyenneCapteurCourant = moyenneIndiceAtmo(CapteurId, debut, fin);
     int length = 0;
@@ -261,7 +261,7 @@ vector<string> Service :: identifierZoneQualiteSimilaire(string CapteurId, Date 
           double similarity = abs(moyenneIndiceAtmoCourant - moyenneCapteurCourant);
           auto result = insertSorted(listSimilarity, similarity, length);
 
-          listRanking.insert(listRanking.begin() + result.second, capteurCourantId);
+          listRanking.insert(listRanking.begin() + result.second, capteurCourant);
 
           length++;
 

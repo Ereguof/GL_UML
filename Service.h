@@ -56,7 +56,7 @@ public:
 
     int qualiteAirZoneCirculairePeriode(double latitude, double longitude, Date debut, Date fin, int rayon);
 
-    vector<string> identifierZoneQualiteSimilaire(string CapteurId, Date debut, Date fin);
+    vector<Capteur> identifierZoneQualiteSimilaire(string CapteurId, Date debut, Date fin);
 
     int qualiteAirZoneCirculaireMoment(double latitude, double longitude, Date jour, int rayon);
 

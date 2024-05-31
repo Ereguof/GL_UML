@@ -80,10 +80,11 @@ int main()
             cout << "Donnez les secondes de fin : " << endl;
             cin >> fin.seconde;
 
-            vector<string> listeResultat = service->identifierZoneQualiteSimilaire(capteurID,debut,fin);
+            vector<Capteur> listeResultat = service->identifierZoneQualiteSimilaire(capteurID,debut,fin);
             cout << "Ordre des capteurs obtenus dans l'ordre croissant de similarité : " << endl;
-            for (vector<string>::iterator it = listeResultat.begin(); it != listeResultat.end(); ++it){
-                cout << *it << endl;
+            for (vector<Capteur>::iterator it = listeResultat.begin(); it != listeResultat.end(); ++it){
+                    Capteur capteurCourant = *it;
+                    cout << capteurCourant.getCapteurID() << "  Latitude :" << capteurCourant.getLatitude() << "  Longitude :" << capteurCourant.getLongitude() << endl;
             }
             cout << endl;
             break;

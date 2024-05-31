@@ -122,13 +122,14 @@ int testIdentifierZoneQualiteSimilaire(){
 
     service->setListeCapteur(listeCapteurs);
 
-    vector<string> listeResultat = service->identifierZoneQualiteSimilaire("Sensor0", dateDebut, dateFin);
+    vector<Capteur> listeResultat = service->identifierZoneQualiteSimilaire("Sensor0", dateDebut, dateFin);
 
     cout << "Test identifierZoneQualiteSimilaire" << endl;
     cout << "Ordre des capteurs voulus : Sensor2 -> Sensor3 -> Sensor1" << endl;
     cout << "Ordre des capteurs obtenus : " << endl;
-    for (vector<string>::iterator it = listeResultat.begin(); it != listeResultat.end(); ++it){
-        cout << *it << endl;
+    for (vector<Capteur>::iterator it = listeResultat.begin(); it != listeResultat.end(); ++it){
+        Capteur capteurCourant = *it;
+        cout << capteurCourant.getCapteurID() << "  Latitude :" << capteurCourant.getLatitude() << "  Longitude :" << capteurCourant.getLongitude() << endl;
     }
     return 0;
 }
