@@ -31,11 +31,11 @@ int main()
         cout << endl << "Liste des commandes" << endl;
         cout << "1 : Consulter le nombre de points d'un utilisateur" << endl;
         cout << "2 : Identifier zones avec qualité de l'air similaire au capteur donné" << endl;
-        cout << "3 : Afficher qualité de l'air dans une zone circulaire dans une certaine période" << endl;
+        cout << "3 : Afficher qualité de l'air dans une zone circulaire dans une certaine période (non-implémentée)" << endl;
         cout << "4 : Afficher qualité de l'air dans une zone circulaire à un moment donné" << endl;
-        cout << "5 : Observer l'impact des air cleaners" << endl;
+        cout << "5 : Observer l'impact des air cleaners (non-implémentée)" << endl;
         cout << "6 : Changer de mode (gouvernement/utilisateur classique)" << endl;
-        cout << "7 : Analyser la qualité des données d'un capteur (mode gouvernement seulement) " << endl;
+        cout << "7 : Analyser la qualité des données d'un capteur (mode gouvernement seulement) (non-implémentée)" << endl;
         cout << "8 : Quitter l'application " << endl;
         cin >> reponse;
         switch (reponse)
@@ -79,7 +79,13 @@ int main()
             cin >> fin.minute;
             cout << "Donnez les secondes de fin : " << endl;
             cin >> fin.seconde;
-            service->identifierZoneQualiteSimilaire(capteurID,debut,fin);
+
+            vector<string> listeResultat = service->identifierZoneQualiteSimilaire(capteurID,debut,fin);
+            cout << "Ordre des capteurs obtenus dans l'ordre croissant de similarité : " << endl;
+            for (vector<string>::iterator it = listeResultat.begin(); it != listeResultat.end(); ++it){
+                cout << *it << endl;
+            }
+            cout << endl;
             break;
             }
 
@@ -144,9 +150,9 @@ int main()
             cout << "Donnez les secondes du moment : " << endl;
             cin >> moment.seconde;
             int rayon;
-            cout << "Donnez le rayon de la zone circulaire : " << endl;
+            cout << "Donnez le rayon de la zone circulaire : " << endl << endl;
             cin >> rayon;
-            service->qualiteAirZoneCirculaireMoment(latitude, longitude, moment, rayon);
+            cout << "Indice ATMO sur la zone considérée : " << service->qualiteAirZoneCirculaireMoment(latitude, longitude, moment, rayon) << endl;
             break; 
             }
 

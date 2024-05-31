@@ -31,12 +31,17 @@ using namespace std;
 //} //----- Fin de Méthode
 
 
-int Service::qualiteAirZoneCirculaireMoment(double latitude, double longitude, Date jour, int rayon){
-
-  cout << "Il faut encore implémenter cette fonction(zone moment)" << endl;
-  return 0;
+double distanceLatLong (double lat1, double long1, double lat2, double long2){
+    double R = 6371; 
+    double dLat = (lat2-lat1) * M_PI / 180;
+    double dLon = (long2-long1) * M_PI / 180;
+    double a = sin(dLat/2) * sin(dLat/2) +
+            cos(lat1 * M_PI / 180) * cos(lat2 * M_PI / 180) *
+            sin(dLon/2) * sin(dLon/2);
+    double c = 2 * atan2(sqrt(a), sqrt(1-a));
+    double d = R * c;
+    return d;
 }
-
 
 int Service::constulterNombrePoints(string Id){
     int res = 0;
@@ -50,19 +55,19 @@ int Service::constulterNombrePoints(string Id){
 }
 
 int Service::qualiteAirZoneCirculairePeriode(double latitude, double longitude, Date debut, Date fin, int rayon){
-    cout << "Il faut encore implémenter cette fonction(qualiteair)"<< endl;
+    cout << "Cette fonctionnalité n'est pas implémentée"<< endl;
 
     return 0;
 }
 
 int Service::observerImpactPurificateur(string PurificateurId){
-  cout << "Il faut encore implémenter cette fonction (observerimpact)"<< endl;
+  cout << "Cette fonctionnalité n'est pas implémentée"<< endl;
 
   return 0;
 
 }
 
-int getSubIndex(int value, const std::vector<int>& thresholds) {
+int getSubIndex(int value, const std::vector<double>& thresholds) {
     for (long unsigned int i = 0; i < thresholds.size(); ++i) {
         if (value <= thresholds[i]) {
             return i + 1;
@@ -88,21 +93,36 @@ int calculeMax4(int a, int b, int c, int d){
 
 }
 
-int calculeIndiceAtmo(Mesure mesureO2, Mesure mesureSO2, Mesure mesureNO2, Mesure mesurePM10){
-      int valeur1 = mesureO2.getValeur();
-      int valeur2 = mesureSO2.getValeur();
-      int valeur3 = mesureNO2.getValeur();
-      int valeur4 = mesurePM10.getValeur();
+int calculeIndiceAtmoValeur(double valeurO3, double valeurNO2, double valeurSO2, double valeurPM10){
+
+    vector<double> O3Thresholds = {29, 54, 79, 104, 129, 149, 179, 209, 239};
+    vector<double> SO2Thresholds = {39, 79, 119, 159, 199, 249, 299, 399, 499};
+    vector<double> NO2Thresholds = {29, 54, 84, 109, 134, 164, 199, 274, 399};
+    vector<double> PM10Thresholds = {6, 13, 20, 27, 34, 41, 49, 64, 79};
+
+    int O3Index = getSubIndex(valeurO3, O3Thresholds);
+    int NO2Index = getSubIndex(valeurNO2, NO2Thresholds);
+    int SO2Index = getSubIndex(valeurSO2, SO2Thresholds);
+    int PM10Index = getSubIndex(valeurPM10, PM10Thresholds);
+
+    return calculeMax4(O3Index, SO2Index, NO2Index, PM10Index);
+}
+
+int calculeIndiceAtmo(Mesure mesureO2, Mesure mesureNO2, Mesure mesureSO2, Mesure mesurePM10){
+      double valeur1 = mesureO2.getValeur();
+      double valeur2 = mesureNO2.getValeur();
+      double valeur3 = mesureSO2.getValeur();
+      double valeur4 = mesurePM10.getValeur();
 
 
-      vector<int> O3Thresholds = {29, 54, 79, 104, 129, 149, 179, 209, 239};
-      vector<int> SO2Thresholds = {39, 79, 119, 159, 199, 249, 299, 399, 499};
-      vector<int> NO2Thresholds = {29, 54, 84, 109, 134, 164, 199, 274, 399};
-      vector<int> PM10Thresholds = {6, 13, 20, 27, 34, 41, 49, 64, 79};
+      vector<double> O3Thresholds = {29, 54, 79, 104, 129, 149, 179, 209, 239};
+      vector<double> SO2Thresholds = {39, 79, 119, 159, 199, 249, 299, 399, 499};
+      vector<double> NO2Thresholds = {29, 54, 84, 109, 134, 164, 199, 274, 399};
+      vector<double> PM10Thresholds = {6, 13, 20, 27, 34, 41, 49, 64, 79};
 
       int O3Index = getSubIndex(valeur1, O3Thresholds);
-      int SO2Index = getSubIndex(valeur2, SO2Thresholds);
-      int NO2Index = getSubIndex(valeur3, NO2Thresholds);
+      int NO2Index = getSubIndex(valeur2, NO2Thresholds);
+      int SO2Index = getSubIndex(valeur3, SO2Thresholds);
       int PM10Index = getSubIndex(valeur4, PM10Thresholds);
 
       return calculeMax4(O3Index, SO2Index, NO2Index, PM10Index);
@@ -153,6 +173,57 @@ int Service:: moyenneIndiceAtmo(string CapteurId, Date debut, Date fin){
 }
 
 
+int Service::qualiteAirZoneCirculaireMoment(double latitude, double longitude, Date moment, int rayon){
+
+    double somme_O3 = 0;
+    double somme_SO2 = 0;
+    double somme_NO2 = 0;
+    double somme_PM10 = 0;
+    double somme_mesure = 0;
+
+    for (vector<Mesure>::iterator it = listeMesure.begin(); it != listeMesure.end(); it += 4) {
+        Mesure mesureEnCours = *it;
+        Date dateEnCours = mesureEnCours.getDate();
+        string nomCapteurEnCours = mesureEnCours.getCapteurID();
+        double latitudeCapteurEnCours = 0;
+        double longitudeCapteurEnCours = 0;
+        for (vector<Capteur>::iterator it = listeCapteur.begin(); it != listeCapteur.end(); it++) {
+            if (it->getCapteurID() == nomCapteurEnCours) {
+                latitudeCapteurEnCours = it->getLatitude();
+                longitudeCapteurEnCours = it->getLongitude();
+            }
+        }
+        double distance_capteur = distanceLatLong(latitude, longitude, latitudeCapteurEnCours, longitudeCapteurEnCours);
+
+        if (moment.annee == dateEnCours.annee && moment.mois == dateEnCours.mois && moment.jour == dateEnCours.jour && distance_capteur <= rayon) {
+
+            auto it2 = it + 1;
+            auto it3 = it2 + 1;
+            auto it4 = it3 + 1;
+
+            if (it4 < listeMesure.end()) {
+                Mesure mesure2 = *it2;
+                Mesure mesure3 = *it3;
+                Mesure mesure4 = *it4;
+
+                somme_mesure++;
+                somme_O3 += mesureEnCours.getValeur();
+                somme_NO2 += mesure2.getValeur();
+                somme_SO2 += mesure3.getValeur();
+                somme_PM10 += mesure4.getValeur();
+            }
+        }
+    }
+    somme_O3 = somme_O3/somme_mesure;
+    somme_NO2 = somme_NO2/somme_mesure;
+    somme_SO2 = somme_SO2/somme_mesure;
+    somme_PM10 = somme_PM10/somme_mesure;
+
+    int indiceAtmo = calculeIndiceAtmoValeur(somme_O3, somme_NO2, somme_SO2, somme_PM10);
+
+    return indiceAtmo;
+}
+
 std::pair<std::vector<int>::iterator, int> insertSorted(std::vector<int>& vec, int value, int length) {
     // Find the insertion point using lower_bound
     auto it = std::lower_bound(vec.begin(), vec.end(), value);
@@ -201,7 +272,7 @@ vector<string> Service :: identifierZoneQualiteSimilaire(string CapteurId, Date 
 }
 
 int Service::analyserQualiteDonnees(string CapteurId){
-    cout << "Il faut encore implémenter cette fonction(qualite donnees)" << endl;
+    cout << "Cette fonctionnalité n'est pas implémentée" << endl;
     return 0;
 }
 

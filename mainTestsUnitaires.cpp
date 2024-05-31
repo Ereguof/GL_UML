@@ -7,6 +7,8 @@ using namespace std;
 #include <list>
 #include <vector>
 #include <algorithm>
+#include <chrono>
+#include <functional>
 #include "Mesure.h"
 #include "Fournisseur.h"
 #include "Utilisateur.h"
@@ -128,7 +130,6 @@ int testIdentifierZoneQualiteSimilaire(){
     for (vector<string>::iterator it = listeResultat.begin(); it != listeResultat.end(); ++it){
         cout << *it << endl;
     }
-    cout << endl;
     return 0;
 }
 
@@ -202,15 +203,29 @@ int testQualiteAirZoneCirculaireMoment(){
 
     cout << "Test qualiteAirZoneCirculaireMoment" << endl;
     cout << "Indice atmo voulu : 7" << endl;
-    cout << "Indice atmo obtenu : " << indiceAtmoFinale << endl << endl;
+    cout << "Indice atmo obtenu : " << indiceAtmoFinale << endl;
  
     return 0;
+}
+
+template <typename Func>
+double measureTime(Func func) {
+    auto start = std::chrono::high_resolution_clock::now(); 
+    func();
+    auto end = std::chrono::high_resolution_clock::now(); 
+    std::chrono::duration<double> duration = end - start; 
+    return duration.count();
 }
 
 int main()
 {
     cout << endl << "Test des deux fonctions majeures implémentées : identifierZoneQualiteSimilaire et qualiteAirZoneCirculaireMoment" << endl << endl;
-    testIdentifierZoneQualiteSimilaire();
-    testQualiteAirZoneCirculaireMoment();
+
+    double timeTaken = measureTime(testIdentifierZoneQualiteSimilaire);
+    cout << "Temps d'éxécution de identifierZoneQualiteSimilaire: " << timeTaken << " secondes" << endl << endl;
+
+    double timeTaken2 = measureTime(testQualiteAirZoneCirculaireMoment);
+    cout << "Temps d'éxécution de testQualiteAirZoneCirculaireMoment: " << timeTaken2 << " secondes" << endl << endl;
+
     return 0;
 }
