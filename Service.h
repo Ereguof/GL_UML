@@ -66,7 +66,7 @@ public:
 
     int lireDataSet(string nomDossier);
 
-    int moyenneIndiceAtmo(string CapteurId, Date debut, Date fin);
+    double moyenneIndiceAtmo(string CapteurId, Date debut, Date fin);
 
     vector<Particulier> getListeParticulier();
     vector<Capteur> getListeCapteur();

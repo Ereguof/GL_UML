@@ -129,11 +129,11 @@ int calculeIndiceAtmo(Mesure mesureO2, Mesure mesureNO2, Mesure mesureSO2, Mesur
 }
 
 
-double Service:: moyenneIndiceAtmo(string CapteurId, Date debut, Date fin){
-    double longueur = 0;
-    double somme = 0;
+int Service:: moyenneIndiceAtmo(string CapteurId, Date debut, Date fin){
+    int longueur = 0;
+    int somme = 0;
     for (vector<Mesure>::iterator it = listeMesure.begin(); it != listeMesure.end(); it += 4) {
-      
+
       Mesure mesureEnCours = *it;
       // une fois qu'on a la mesure, on regarde si c'est le bon capteur et une date valide
       if (mesureEnCours.getCapteurID() == CapteurId){
@@ -152,8 +152,7 @@ double Service:: moyenneIndiceAtmo(string CapteurId, Date debut, Date fin){
                         if (it4 < listeMesure.end()) {
                             Mesure mesure2 = *it2;
                             Mesure mesure3 = *it3;
-                            Mesure mesure4 = *it4;
-
+                            Mesure mesure4 = *it4;vvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
                             int indiceAtmo = calculeIndiceAtmo(mesureEnCours, mesure2, mesure3, mesure4);
                             somme += indiceAtmo;
                             longueur++;
@@ -167,7 +166,7 @@ double Service:: moyenneIndiceAtmo(string CapteurId, Date debut, Date fin){
     //cout << "service moyenne" << endl;
     if (longueur != 0)
         return somme/longueur;
-    
+
     return -1;
 
 }
@@ -224,7 +223,7 @@ int Service::qualiteAirZoneCirculaireMoment(double latitude, double longitude, D
     return indiceAtmo;
 }
 
-std::pair<std::vector<double>::iterator, int> insertSorted(std::vector<double>& vec, double value, int length) {
+std::pair<std::vector<int>::iterator, int> insertSorted(std::vector<int>& vec, int value, int length) {
     // Find the insertion point using lower_bound
     auto it = std::lower_bound(vec.begin(), vec.end(), value);
 
@@ -245,10 +244,10 @@ std::pair<std::vector<double>::iterator, int> insertSorted(std::vector<double>& 
 vector<string> Service :: identifierZoneQualiteSimilaire(string CapteurId, Date debut, Date fin){
 
 
-    vector<double> listSimilarity;
+    vector<int> listSimilarity;
     vector<string> listRanking;
     //int indiceAtmoCapteur = moyenneIndiceAtmo(CapteurId, debut, fin);
-    double moyenneCapteurCourant = moyenneIndiceAtmo(CapteurId, debut, fin);
+    int moyenneCapteurCourant = moyenneIndiceAtmo(CapteurId, debut, fin);
     int length = 0;
     for (vector<Capteur>::iterator it = listeCapteur.begin(); it != listeCapteur.end(); ++it){
 
@@ -257,8 +256,9 @@ vector<string> Service :: identifierZoneQualiteSimilaire(string CapteurId, Date 
         string capteurCourantId = capteurCourant.getCapteurID();
 
         if (capteurCourantId != CapteurId){
-          double moyenneIndiceAtmoCourant = moyenneIndiceAtmo(capteurCourantId, debut, fin);
-          double similarity = abs(moyenneIndiceAtmoCourant - moyenneCapteurCourant);
+          int moyenneIndiceAtmoCourant = moyenneIndiceAtmo(capteurCourantId, debut, fin);
+          int similarity = abs(moyenneIndiceAtmoCourant - moyenneCapteurCourant);
+          listSimilarity.push_back(similarity);
           auto result = insertSorted(listSimilarity, similarity, length);
 
           listRanking.insert(listRanking.begin() + result.second, capteurCourantId);
@@ -267,8 +267,6 @@ vector<string> Service :: identifierZoneQualiteSimilaire(string CapteurId, Date 
 
         }
     }
-
-    
     return listRanking;
 }
 
