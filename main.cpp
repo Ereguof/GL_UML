@@ -143,7 +143,10 @@ int main()
             cin >> moment.minute;
             cout << "Donnez les secondes du moment : " << endl;
             cin >> moment.seconde;
-            service->qualiteAirZoneCirculaireMoment(latitude, longitude, moment);
+            int rayon;
+            cout << "Donnez le rayon de la zone circulaire : " << endl;
+            cin >> rayon;
+            service->qualiteAirZoneCirculaireMoment(latitude, longitude, moment, rayon);
             break; 
             }
 

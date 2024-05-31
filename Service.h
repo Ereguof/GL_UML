@@ -58,7 +58,7 @@ public:
 
     vector<string> identifierZoneQualiteSimilaire(string CapteurId, Date debut, Date fin);
 
-    int qualiteAirZoneCirculaireMoment(double latitude, double longitude, Date jour);
+    int qualiteAirZoneCirculaireMoment(double latitude, double longitude, Date jour, int rayon);
 
     int observerImpactPurificateur(string PurificateurId);
 
@@ -79,16 +79,8 @@ public:
     void setListeCapteur(vector<Capteur> listeCapteur);
     void setListeAttribut(vector<Attribut> listeAttribut);
     void setListeMesure(vector<Mesure> listeMesure);
-    // void setListePurificateur(vector<Purificateur> listePurificateur);
+    void setListePurificateur(vector<Purificateur> listePurificateur);
     void setListeFournisseur(vector<Fournisseur> listeFournisseur);
-
-//------------------------------------------------- Surcharge d'opérateurs
-    // Service & operator = ( const Service & unService );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
 //-------------------------------------------- Constructeurs - destructeur
     // Service ( const Service & unService );

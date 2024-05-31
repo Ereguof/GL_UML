@@ -31,7 +31,7 @@ using namespace std;
 //} //----- Fin de Méthode
 
 
-int Service::qualiteAirZoneCirculaireMoment(double latitude, double longitude, Date jour){
+int Service::qualiteAirZoneCirculaireMoment(double latitude, double longitude, Date jour, int rayon){
 
   cout << "Il faut encore implémenter cette fonction(zone moment)" << endl;
   return 0;
@@ -53,7 +53,7 @@ int Service::qualiteAirZoneCirculairePeriode(double latitude, double longitude, 
     cout << "Il faut encore implémenter cette fonction(qualiteair)"<< endl;
 
     return 0;
-}//------------------------------------------------- Surcharge d'opérateurs
+}
 
 int Service::observerImpactPurificateur(string PurificateurId){
   cout << "Il faut encore implémenter cette fonction (observerimpact)"<< endl;
@@ -63,7 +63,7 @@ int Service::observerImpactPurificateur(string PurificateurId){
 }
 
 int getSubIndex(int value, const std::vector<int>& thresholds) {
-    for (int i = 0; i < thresholds.size(); ++i) {
+    for (long unsigned int i = 0; i < thresholds.size(); ++i) {
         if (value <= thresholds[i]) {
             return i + 1;
         }
@@ -100,19 +100,12 @@ int calculeIndiceAtmo(Mesure mesureO2, Mesure mesureSO2, Mesure mesureNO2, Mesur
       vector<int> NO2Thresholds = {29, 54, 84, 109, 134, 164, 199, 274, 399};
       vector<int> PM10Thresholds = {6, 13, 20, 27, 34, 41, 49, 64, 79};
 
-
       int O3Index = getSubIndex(valeur1, O3Thresholds);
       int SO2Index = getSubIndex(valeur2, SO2Thresholds);
       int NO2Index = getSubIndex(valeur3, NO2Thresholds);
       int PM10Index = getSubIndex(valeur4, PM10Thresholds);
 
-
-
       return calculeMax4(O3Index, SO2Index, NO2Index, PM10Index);
-
-
-
-
 }
 
 
@@ -183,8 +176,8 @@ vector<string> Service :: identifierZoneQualiteSimilaire(string CapteurId, Date 
 
     vector<int> listSimilarity;
     vector<string> listRanking;
-    int indiceAtmoCapteur = moyenneIndiceAtmo(CapteurId, debut, fin);
-    int moyenneCapteurCourant ;
+    //int indiceAtmoCapteur = moyenneIndiceAtmo(CapteurId, debut, fin);
+    int moyenneCapteurCourant = moyenneIndiceAtmo(CapteurId, debut, fin);
     int length = 0;
     for (vector<Capteur>::iterator it = listeCapteur.begin(); it != listeCapteur.end(); ++it){
 
@@ -204,9 +197,6 @@ vector<string> Service :: identifierZoneQualiteSimilaire(string CapteurId, Date 
 
         }
     }
-
-
-
     return listRanking;
 }
 
@@ -574,9 +564,9 @@ void Service::setListeMesure(vector<Mesure> listeMesure){
     this->listeMesure = listeMesure;
 }
 
-// void Service::setListePurificateur(vector<Purificateur> listePurificateur){
-//     this->listePurificateur = listePurificateur;
-// }
+void Service::setListePurificateur(vector<Purificateur> listePurificateur){
+    this->listePurificateur = listePurificateur;
+}
 
 void Service::setListeFournisseur(vector<Fournisseur> listeFournisseur){
     this->listeFournisseur = listeFournisseur;

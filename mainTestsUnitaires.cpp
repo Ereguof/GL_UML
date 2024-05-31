@@ -1,4 +1,4 @@
-// Projet UML - main des tests unitaires
+// Projet UML - main des tests unitaires 
 
 using namespace std;
 #include <iostream>
@@ -122,16 +122,95 @@ int testIdentifierZoneQualiteSimilaire(){
 
     vector<string> listeResultat = service->identifierZoneQualiteSimilaire("Sensor0", dateDebut, dateFin);
 
+    cout << "Test identifierZoneQualiteSimilaire" << endl;
+    cout << "Ordre des capteurs voulus : Sensor2 -> Sensor3 -> Sensor1" << endl;
+    cout << "Ordre des capteurs obtenus : " << endl;
     for (vector<string>::iterator it = listeResultat.begin(); it != listeResultat.end(); ++it){
         cout << *it << endl;
     }
+    cout << endl;
+    return 0;
+}
+
+int testQualiteAirZoneCirculaireMoment(){
+
+    Date dateDebut;
+    dateDebut.annee = 2019;
+    dateDebut.mois = 1;
+    dateDebut.jour = 1;
+    dateDebut.heure = 12;
+    dateDebut.minute = 0;
+    dateDebut.seconde = 0;
+
+    Date dateFin;
+    dateFin.annee = 2019;
+    dateFin.mois = 1;
+    dateFin.jour = 2;
+    dateFin.heure = 12;
+    dateFin.minute = 0;
+    dateFin.seconde = 0;
+
+    Service * service = new Service( ); 
+
+    vector <Mesure> listeMesures;
+    vector <Capteur> listeCapteurs;
+
+    Mesure mes010(dateDebut, "Sensor0", "O3", 50.25);
+    Mesure mes011(dateDebut, "Sensor0", "NO2", 74.5);
+    Mesure mes012(dateDebut, "Sensor0", "S02", 41.5);
+    Mesure mes013(dateDebut, "Sensor0", "PM10", 44.75);
+    listeMesures.push_back(mes010);
+    listeMesures.push_back(mes011);
+    listeMesures.push_back(mes012);
+    listeMesures.push_back(mes013);
+    Mesure mes020(dateFin, "Sensor0", "O3", 50.5);
+    Mesure mes021(dateFin, "Sensor0", "NO2", 72);
+    Mesure mes022(dateFin, "Sensor0", "S02", 39.25);
+    Mesure mes023(dateFin, "Sensor0", "PM10", 50.5);
+    listeMesures.push_back(mes020);
+    listeMesures.push_back(mes021);
+    listeMesures.push_back(mes022);
+    listeMesures.push_back(mes023);
+
+    Mesure mes110(dateDebut, "Sensor1", "O3", 63.04);
+    Mesure mes111(dateDebut, "Sensor1", "NO2", 61.92);
+    Mesure mes112(dateDebut, "Sensor1", "S02", 34.42);
+    Mesure mes113(dateDebut, "Sensor1", "PM10", 51.12);
+    listeMesures.push_back(mes110);
+    listeMesures.push_back(mes111);
+    listeMesures.push_back(mes112);
+    listeMesures.push_back(mes113);
+    Mesure mes120(dateFin, "Sensor1", "O3", 65.08);
+    Mesure mes121(dateFin, "Sensor1", "NO2", 60.33);
+    Mesure mes122(dateFin, "Sensor1", "S02", 32.88);
+    Mesure mes123(dateFin, "Sensor1", "PM10", 54.58);
+    listeMesures.push_back(mes120);
+    listeMesures.push_back(mes121);
+    listeMesures.push_back(mes122);
+    listeMesures.push_back(mes123);
+
+    service->setListeMesure(listeMesures);
+
+    Capteur cap0("Sensor0", 44.0, -1.0);
+    Capteur cap1("Sensor1", 44.0, -0.3);
+    listeCapteurs.push_back(cap0);
+    listeCapteurs.push_back(cap1);
+
+    service->setListeCapteur(listeCapteurs);
+
+    int indiceAtmoFinale = service->qualiteAirZoneCirculaireMoment(44.0, -0.5, dateDebut, 150);
+
+    cout << "Test qualiteAirZoneCirculaireMoment" << endl;
+    cout << "Indice atmo voulu : 7" << endl;
+    cout << "Indice atmo obtenu : " << indiceAtmoFinale << endl << endl;
+ 
     return 0;
 }
 
 int main()
 {
-
+    cout << endl << "Test des deux fonctions majeures implémentées : identifierZoneQualiteSimilaire et qualiteAirZoneCirculaireMoment" << endl << endl;
     testIdentifierZoneQualiteSimilaire();
-    
+    testQualiteAirZoneCirculaireMoment();
     return 0;
 }
