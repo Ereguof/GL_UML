@@ -10,8 +10,12 @@ stored on a central server in a set of files in CSV format.
 
 While in the project folder :
 `>> make`
-`>> ./main`                   -> to use the main app (interactive app, actual software)
-`>> ./mainTestsUnitaires`     -> to use the test executable (non-interative, allows testing for the implemented functions and measures their performance)
+
+`>> ./main`
+-> to use the main app (interactive app, actual software)
+
+`>> ./mainTestsUnitaires`
+-> to use the test executable (non-interative, allows testing for the implemented functions and measures their performance)
 
 
 Membres du projet :
