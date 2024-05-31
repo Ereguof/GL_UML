@@ -15,7 +15,7 @@ While in the project folder :
 -> to use the main app (interactive app, actual software)
 
 `>> ./mainTestsUnitaires`
--> to use the test executable (non-interative, allows testing for the implemented functions and measures their performance)
+-> to use the test executable (non-interactive, allows testing for the implemented functions and measures their performance)
 
 
 Membres du projet :
