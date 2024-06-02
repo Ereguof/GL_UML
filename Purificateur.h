@@ -37,32 +37,11 @@ public:
     double getLatitude() const;
     const Date & getDebut() const;
     const Date & getFin() const;
-//------------------------------------------------- Surcharge d'opérateurs
-    // Purificateur & operator = ( const Purificateur & unPurificateur );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
 //-------------------------------------------- Constructeurs - destructeur
-    // Purificateur ( const Purificateur & unPurificateur );
-    // // Mode d'emploi (constructeur de copie) :
-    // //
-    // // Contrat :
-    // //
 
-    // Purificateur ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
     Purificateur(string purificateurId_,  double longitude_, double latitude_, Date debut_, Date fin_);
     virtual ~Purificateur ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //------------------------------------------------------------------ PRIVE
 
@@ -75,11 +54,6 @@ private:
   double latitude;
   Date debut;
   Date fin;
-
-
-//----------------------------------------------------- Méthodes protégées
-
-//----------------------------------------------------- Attributs protégés
 
 };
 

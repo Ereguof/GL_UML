@@ -28,11 +28,7 @@ class Capteur
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+
     string const & getCapteurID() const;
     double getLatitude() const;
     double getLongitude() const;
@@ -42,23 +38,10 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    // Capteur ( const Capteur & unCapteur );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
     Capteur (string monCapteurID, double maLatitude, double maLongitude );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     virtual ~Capteur ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //------------------------------------------------------------------ PRIVE
 

@@ -29,35 +29,16 @@ class Attribut
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
    const string & getAttributId() const;
    const string & getUnite() const;
    const string & getDescription() const;
 
-
-
 //-------------------------------------------- Constructeurs - destructeur
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
     Attribut ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     Attribut(string attributId_,  string unite_, string description_);
     virtual ~Attribut ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //------------------------------------------------------------------ PRIVE
 
@@ -68,10 +49,6 @@ private:
   string attributId;
   string unite;
   string description;
-
-
-
-
 };
 
 //-------------------------------- Autres définitions dépendantes de <Attribut>

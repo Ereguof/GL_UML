@@ -22,11 +22,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Fournisseur::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
+
 bool Fournisseur::passerEnModePrivilegie (string motDePasse) const
 {
     return true;
@@ -42,14 +38,6 @@ string const & Fournisseur::getPurificateurID() const
     return purificateurID;
 }
 //-------------------------------------------- Constructeurs - destructeur
-// Fournisseur::Fournisseur ( const Fournisseur & unFournisseur )
-// // Algorithme :
-// //
-// {
-// #ifdef MAP
-//     cout << "Appel au constructeur de copie de <Fournisseur>" << endl;
-// #endif
-// } //----- Fin de Fournisseur (constructeur de copie)
 
 Fournisseur::Fournisseur (string fournisseurID_, string purificateurID_)
 {

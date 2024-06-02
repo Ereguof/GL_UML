@@ -23,9 +23,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-
-
-//------------------------------------------------- Surcharge d'opérateurs
 string Purificateur::getPurificateurId() const
 {
     return purificateurId;
@@ -64,16 +61,6 @@ Purificateur::Purificateur (string purificateurId_,  double latitude_, double lo
   #endif
 
 }
-
-
-// Purificateur::Purificateur ( )
-// // Algorithme :
-// //
-// {
-// #ifdef MAP
-//     cout << "Appel au constructeur de <Purificateur>" << endl;
-// #endif
-// } //----- Fin de Purificateur
 
 
 Purificateur::~Purificateur ( )

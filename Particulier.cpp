@@ -23,15 +23,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Particulier::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-
 
 
 string const & Particulier::getCapteurID() const
@@ -59,14 +50,6 @@ void Particulier::setCapteurID(const string& newCapteurID){
   capteurID = newCapteurID;
 }
 //-------------------------------------------- Constructeurs - destructeur
-// Particulier::Particulier ( const Particulier & unParticulier )
-// // Algorithme :
-// //
-// {
-// #ifdef MAP
-//     cout << "Appel au constructeur de copie de <Particulier>" << endl;
-// #endif
-// } //----- Fin de Particulier (constructeur de copie)
 
 
 Particulier::Particulier ( string userID_ , string capteurID_, bool fiabilite_, int nbPoints_): Utilisateur(userID_)

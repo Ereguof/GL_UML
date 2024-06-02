@@ -33,36 +33,18 @@ class Fournisseur : public Utilisateur
     public:
     //----------------------------------------------------- Méthodes publiques
         bool passerEnModePrivilegie (string motDePasse) const;
-        // Mode d'emploi :
 
         string const & getFournisseurID() const;
 
         string const & getPurificateurID() const;
 
     //-------------------------------------------- Constructeurs - destructeur
-        // Fournisseur ( const Fournisseur & unFournisseur );
-        // // Mode d'emploi (constructeur de copie) :
-        // //
-        // // Contrat :
-        // //
 
         Fournisseur ( );
-        // Mode d'emploi :
-        //
-        // Contrat :
-        //
 
         Fournisseur(string fournisseurID_, string purificateurID_);
-        // Mode d'emploi :
-        //
-        // Contrat :
-        //
 
         virtual ~Fournisseur ( );
-        // Mode d'emploi :
-        //
-        // Contrat :
-        //
 
     //------------------------------------------------------------------ PRIVE
 

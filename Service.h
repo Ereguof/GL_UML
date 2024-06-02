@@ -46,11 +46,6 @@ class Service
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     int constulterNombrePoints (string Id);
 
@@ -83,23 +78,10 @@ public:
     void setListeFournisseur(vector<Fournisseur> listeFournisseur);
 
 //-------------------------------------------- Constructeurs - destructeur
-    // Service ( const Service & unService );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
 
     Service ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     virtual ~Service ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
 //------------------------------------------------------------------ PRIVE
 

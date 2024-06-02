@@ -25,11 +25,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Utilisateur::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -41,14 +36,6 @@ const string & Utilisateur::getUtilisateurID() const
 }
 
 //-------------------------------------------- Constructeurs - destructeur
-// Utilisateur::Utilisateur ( const Utilisateur & unUtilisateur )
-// // Algorithme :
-// //
-// {
-// #ifdef MAP
-//     cout << "Appel au constructeur de copie de <Utilisateur>" << endl;
-// #endif
-// } //----- Fin de Utilisateur (constructeur de copie)
 
 
 Utilisateur::Utilisateur ( )

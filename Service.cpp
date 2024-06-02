@@ -24,11 +24,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Service::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
 
 double distanceLatLong (double lat1, double long1, double lat2, double long2){
@@ -77,7 +72,7 @@ int getSubIndex(int value, const std::vector<double>& thresholds) {
 }
 
 int calculeMax4(int a, int b, int c, int d){
-  int maxVal = a; // Assume the first value is the largest initially
+  int maxVal = a; 
 
   if (b > maxVal) {
       maxVal = b;
@@ -645,20 +640,7 @@ void Service::setListeFournisseur(vector<Fournisseur> listeFournisseur){
 }
 
 
-//------------------------------------------------- Surcharge d'opérateurs
-
-
-
 //-------------------------------------------- Constructeurs - destructeur
-// Service::Service ( const Service & unService )
-// // Algorithme :
-// //
-// {
-// #ifdef MAP
-//     cout << "Appel au constructeur de copie de <Service>" << endl;
-// #endif
-// } //----- Fin de Service (constructeur de copie)
-
 
 Service::Service ( )
 // Algorithme :

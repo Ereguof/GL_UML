@@ -31,11 +31,7 @@ class Mesure
 
     public:
     //----------------------------------------------------- Méthodes publiques
-        // type Méthode ( liste des paramètres );
-        // Mode d'emploi :
-        //
-        // Contrat :
-        //
+    
         string const & getCapteurID() const;
         string const & getAttributID() const;
         double getValeur() const;
@@ -44,22 +40,10 @@ class Mesure
     //-------------------------------------------- Constructeurs - destructeur
 
         Mesure ( );
-        // Mode d'emploi :
-        //
-        // Contrat :
-        //
 
         Mesure(Date date_, string capteurID_, string attributID_, double valeur_);
-        // Mode d'emploi :
-        //
-        // Contrat :
-        //
 
         virtual ~Mesure ( );
-        // Mode d'emploi :
-        //
-        // Contrat :
-        //
 
     //------------------------------------------------------------------ PRIVE
 

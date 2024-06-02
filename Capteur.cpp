@@ -22,14 +22,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Capteur::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
-
 
 string const & Capteur::getCapteurID() const
 {
@@ -46,15 +38,6 @@ double Capteur::getLongitude() const
     return longitude;
 }
 //-------------------------------------------- Constructeurs - destructeur
-// Capteur::Capteur ( const Capteur & unCapteur )
-// // Algorithme :
-// //
-// {
-// #ifdef MAP
-//     cout << "Appel au constructeur de copie de <Capteur>" << endl;
-// #endif
-// } //----- Fin de Capteur (constructeur de copie)
-
 
 Capteur::Capteur ( string monCapteurID, double maLatitude, double maLongitude)
 // Algorithme :

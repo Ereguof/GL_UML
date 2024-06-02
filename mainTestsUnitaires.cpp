@@ -111,10 +111,10 @@ int testIdentifierZoneQualiteSimilaire(){
 
     service->setListeMesure(listeMesures);
 
-    Capteur cap0("Sensor0", 1.0, 1.0);
-    Capteur cap1("Sensor1", 1.0, 1.0);
-    Capteur cap2("Sensor2", 1.0, 1.0);
-    Capteur cap3("Sensor3", 1.0, 1.0);
+    Capteur cap0("Sensor0", 44.0, 1.0);
+    Capteur cap1("Sensor1", 40.0, 1.5);
+    Capteur cap2("Sensor2", 44.0, 1.2);
+    Capteur cap3("Sensor3", 48.0, 4.0);
     listeCapteurs.push_back(cap0);
     listeCapteurs.push_back(cap1);
     listeCapteurs.push_back(cap2);
